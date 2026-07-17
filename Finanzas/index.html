@@ -1,1 +1,2127 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0F172A">
+
+<meta
+name="description"
+content="Administrador inteligente de finanzas personales">
+
+<title>Mis Finanzas</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="icon"
+href="icons/favicon.png">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<!-- Fondo -->
+
+<div class="background">
+
+<div class="gradient one"></div>
+
+<div class="gradient two"></div>
+
+<div class="gradient three"></div>
+
+<div class="noise"></div>
+
+</div>
+
+<!-- Loader -->
+
+<div
+id="loadingScreen"
+class="loading-screen">
+
+<div class="loader-card">
+
+<div class="loader-ring"></div>
+
+<h2>
+
+Mis Finanzas
+
+</h2>
+
+<p>
+
+Preparando tu información...
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Aplicación -->
+
+<div
+id="app"
+class="app">
+
+<main class="main-container">
+<!-- ===========================
+     HEADER
+=========================== -->
+
+<header class="top-header glass">
+
+    <div class="header-left">
+
+        <div class="profile-image">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+        <div class="profile-info">
+
+            <span class="welcome-text">
+
+                Bienvenido
+
+            </span>
+
+            <h2 id="userName">
+
+                Usuario
+
+            </h2>
+
+            <span id="currentDate"
+                  class="current-date">
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <button
+        id="settingsButton"
+        class="icon-button">
+
+        <i class="fa-solid fa-gear"></i>
+
+    </button>
+
+</header>
+
+<!-- ===========================
+     TARJETA PRINCIPAL
+=========================== -->
+
+<section class="balance-card glass">
+
+    <span class="balance-label">
+
+        Balance Total
+
+    </span>
+
+    <h1 id="balance">
+
+        $0
+
+    </h1>
+
+    <div class="balance-details">
+
+        <div class="detail">
+
+            <span>
+
+                Ingresos
+
+            </span>
+
+            <strong id="income">
+
+                $0
+
+            </strong>
+
+        </div>
+
+        <div class="detail">
+
+            <span>
+
+                Gastos
+
+            </span>
+
+            <strong id="expense">
+
+                $0
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     ACCIONES RÁPIDAS
+=========================== -->
+
+<section class="quick-actions">
+
+    <button
+        id="incomeButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-circle-plus"></i>
+
+        <span>
+
+            Ingreso
+
+        </span>
+
+    </button>
+
+    <button
+        id="expenseButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-circle-minus"></i>
+
+        <span>
+
+            Gasto
+
+        </span>
+
+    </button>
+
+    <button
+        id="transferButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-right-left"></i>
+
+        <span>
+
+            Transferir
+
+        </span>
+
+    </button>
+
+    <button
+        id="savingButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-piggy-bank"></i>
+
+        <span>
+
+            Ahorro
+
+        </span>
+
+    </button>
+
+</section>
+<!-- ===========================
+     DASHBOARD
+=========================== -->
+
+<section class="dashboard-grid">
+
+    <!-- Saldo Disponible -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Saldo Disponible
+
+            </span>
+
+            <i class="fa-solid fa-wallet"></i>
+
+        </div>
+
+        <h2 id="availableBalance">
+
+            $0
+
+        </h2>
+
+    </article>
+
+    <!-- Meta de ahorro -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Meta de ahorro
+
+            </span>
+
+            <i class="fa-solid fa-bullseye"></i>
+
+        </div>
+
+        <h2 id="currentSaving">
+
+            $0
+
+        </h2>
+
+        <div class="progress">
+
+            <div
+                id="savingProgress"
+                class="progress-fill">
+
+            </div>
+
+        </div>
+
+        <div class="progress-footer">
+
+            <small>
+
+                Progreso
+
+            </small>
+
+            <strong
+                id="savingPercent">
+
+                0%
+
+            </strong>
+
+        </div>
+
+    </article>
+
+    <!-- Presupuesto general -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Presupuesto mensual
+
+            </span>
+
+            <i class="fa-solid fa-chart-column"></i>
+
+        </div>
+
+        <h2
+            id="monthlyBudgetCard">
+
+            $0
+
+        </h2>
+
+        <div class="progress">
+
+            <div
+                id="budgetProgress"
+                class="progress-fill">
+
+            </div>
+
+        </div>
+
+        <div class="progress-footer">
+
+            <small>
+
+                Disponible
+
+            </small>
+
+            <strong
+                id="remainingBudget">
+
+                $0
+
+            </strong>
+
+        </div>
+
+    </article>
+
+</section>
+
+<!-- ===========================
+     PRESUPUESTO POR CATEGORÍAS
+=========================== -->
+
+<section
+    class="glass category-budget">
+
+    <div class="section-title">
+
+        <h3>
+
+            Presupuesto por categorías
+
+        </h3>
+
+        <button
+            id="addCategoryBudget"
+            class="mini-button">
+
+            <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+    </div>
+
+    <div
+        id="categoryBudgetList">
+
+        <!-- El JavaScript agregará aquí
+             cada categoría con:
+
+             🍔 Comida
+             Presupuesto: $400.000
+             Gastado: $120.000
+             Barra de progreso
+
+        -->
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     INDICADORES
+=========================== -->
+
+<section class="stats-row">
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-arrow-trend-up"></i>
+
+        <span>
+
+            Hoy
+
+        </span>
+
+        <strong
+            id="todayExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-calendar-week"></i>
+
+        <span>
+
+            Semana
+
+        </span>
+
+        <strong
+            id="weekExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        <span>
+
+            Mes
+
+        </span>
+
+        <strong
+            id="monthExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        <span>
+
+            Promedio
+
+        </span>
+
+        <strong
+            id="dailyAverage">
+
+            $0
+
+        </strong>
+
+    </article>
+
+</section>
+<!-- ===========================
+     HISTORIAL
+=========================== -->
+
+<section class="transactions-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Últimos movimientos
+
+            </h2>
+
+            <small>
+
+                Se muestran los movimientos más recientes
+
+            </small>
+
+        </div>
+
+        <button
+            id="viewAllTransactions"
+            class="glass text-button">
+
+            Ver todo
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+         BUSCADOR
+    =========================== -->
+
+    <div class="search-box glass">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+
+            id="searchTransaction"
+
+            type="text"
+
+            placeholder="Buscar movimiento...">
+
+    </div>
+
+    <!-- ===========================
+         FILTROS
+    =========================== -->
+
+    <div class="filters">
+
+        <select
+            id="filterType"
+            class="glass">
+
+            <option value="all">
+
+                Todos
+
+            </option>
+
+            <option value="income">
+
+                Ingresos
+
+            </option>
+
+            <option value="expense">
+
+                Gastos
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterCategory"
+            class="glass">
+
+            <option value="all">
+
+                Categorías
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterAccount"
+            class="glass">
+
+            <option value="all">
+
+                Cuentas
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterOrder"
+            class="glass">
+
+            <option value="new">
+
+                Más recientes
+
+            </option>
+
+            <option value="old">
+
+                Más antiguos
+
+            </option>
+
+            <option value="high">
+
+                Mayor valor
+
+            </option>
+
+            <option value="low">
+
+                Menor valor
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- ===========================
+         LISTA
+    =========================== -->
+
+    <div
+        id="recentTransactions"
+        class="transactions-list">
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     TEMPLATE MOVIMIENTO
+=========================== -->
+
+<template
+    id="transactionTemplate">
+
+    <article
+        class="transaction-card glass">
+
+        <div
+            class="transaction-left">
+
+            <div
+                class="transaction-icon">
+
+                🍔
+
+            </div>
+
+            <div>
+
+                <h4
+                    class="transaction-title">
+
+                    Movimiento
+
+                </h4>
+
+                <small
+                    class="transaction-subtitle">
+
+                    Fecha
+
+                </small>
+
+                <small
+                    class="transaction-payment">
+
+                    Cuenta
+
+                </small>
+
+            </div>
+
+        </div>
+
+        <div
+            class="transaction-right">
+
+            <strong
+                class="transaction-amount">
+
+                $0
+
+            </strong>
+
+            <div
+                class="transaction-actions">
+
+                <button
+                    class="edit-btn icon-button">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+                <button
+                    class="delete-btn icon-button">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</template>
+
+<!-- ===========================
+     ESTADO VACÍO
+=========================== -->
+
+<div
+    id="emptyTransactions"
+    class="empty-state glass">
+
+    <i
+        class="fa-solid fa-wallet"></i>
+
+    <h3>
+
+        Aún no tienes movimientos
+
+    </h3>
+
+    <p>
+
+        Registra tu primer ingreso o gasto para comenzar a visualizar tus estadísticas.
+
+    </p>
+
+</div>
+<!-- ===========================
+     MODAL MOVIMIENTO
+=========================== -->
+
+<div
+    id="transactionModal"
+    class="modal hidden">
+
+    <div class="modal-content glass">
+
+        <div class="modal-header">
+
+            <h2>
+
+                Nuevo movimiento
+
+            </h2>
+
+            <button
+                id="closeTransaction"
+                class="icon-button">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form
+            id="transactionForm">
+
+            <!-- Tipo -->
+
+            <div class="type-selector">
+
+                <button
+                    type="button"
+                    id="selectIncome"
+                    class="type-button">
+
+                    <i class="fa-solid fa-circle-plus"></i>
+
+                    Ingreso
+
+                </button>
+
+                <button
+                    type="button"
+                    id="selectExpense"
+                    class="type-button active">
+
+                    <i class="fa-solid fa-circle-minus"></i>
+
+                    Gasto
+
+                </button>
+
+            </div>
+
+            <!-- Valor -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Valor
+
+                </label>
+
+                <input
+
+                    id="amount"
+
+                    type="number"
+
+                    min="0"
+
+                    placeholder="$0"
+
+                    required>
+
+            </div>
+
+            <!-- Cuenta -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Cuenta
+
+                </label>
+
+                <div
+                    id="paymentSelector"
+                    class="account-selector">
+
+                </div>
+
+            </div>
+
+            <!-- Categoría -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+                <div
+                    id="categorySelector"
+                    class="category-selector">
+
+                </div>
+
+            </div>
+
+            <!-- Presupuesto categoría -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Presupuesto de esta categoría
+
+                </label>
+
+                <div
+                    id="categoryBudgetInfo"
+                    class="budget-preview glass">
+
+                    <strong>
+
+                        Presupuesto:
+
+                    </strong>
+
+                    <span
+                        id="selectedCategoryBudget">
+
+                        $0
+
+                    </span>
+
+                    <div class="progress">
+
+                        <div
+                            id="categoryBudgetProgress"
+                            class="progress-fill">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Descripción -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Descripción
+
+                </label>
+
+                <input
+
+                    id="description"
+
+                    type="text"
+
+                    maxlength="60"
+
+                    placeholder="Ej. Almuerzo">
+
+            </div>
+
+            <!-- Fecha -->
+
+            <div class="double-grid">
+
+                <div class="input-group">
+
+                    <label>
+
+                        Fecha
+
+                    </label>
+
+                    <input
+
+                        id="transactionDate"
+
+                        type="date">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+
+                        Hora
+
+                    </label>
+
+                    <input
+
+                        id="transactionTime"
+
+                        type="time">
+
+                </div>
+
+            </div>
+
+            <!-- Notas -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Notas
+
+                </label>
+
+                <textarea
+
+                    id="notes"
+
+                    rows="3"
+
+                    placeholder="Información adicional..."></textarea>
+
+            </div>
+
+            <!-- Etiquetas -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Etiquetas
+
+                </label>
+
+                <input
+
+                    id="tags"
+
+                    type="text"
+
+                    placeholder="hogar, comida, trabajo...">
+
+            </div>
+
+            <!-- Comprobante -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Comprobante (Opcional)
+
+                </label>
+
+                <input
+
+                    id="receipt"
+
+                    type="file"
+
+                    accept="image/*">
+
+            </div>
+
+            <!-- Botones -->
+
+            <div class="modal-actions">
+
+                <button
+
+                    id="cancelTransaction"
+
+                    type="button"
+
+                    class="secondary-button">
+
+                    Cancelar
+
+                </button>
+
+                <button
+
+                    id="saveTransaction"
+
+                    type="submit"
+
+                    class="primary-button">
+
+                    Guardar movimiento
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- ===========================
+     SECCIÓN PRESUPUESTOS
+=========================== -->
+
+<section
+    id="budgetsSection"
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Presupuestos
+
+            </h2>
+
+            <p>
+
+                Controla tus gastos por categoría
+
+            </p>
+
+        </div>
+
+
+        <button
+            id="addBudgetButton"
+            class="primary-button">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Nuevo presupuesto
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Resumen general -->
+
+    <div class="budget-summary glass">
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <div>
+
+                <span>
+
+                    Presupuesto total
+
+                </span>
+
+                <strong
+                    id="totalBudgetAmount">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <div>
+
+                <span>
+
+                    Gastado
+
+                </span>
+
+                <strong
+                    id="totalSpentBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+            <div>
+
+                <span>
+
+                    Disponible
+
+                </span>
+
+                <strong
+                    id="totalRemainingBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Lista de presupuestos -->
+
+    <div
+        id="budgetList"
+        class="budget-grid">
+
+
+        <!--
+            Ejemplo dinámico:
+
+            <div class="budget-card glass">
+
+                <div class="budget-header">
+
+                    <div class="category-info">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        <span>
+                            Comida
+                        </span>
+
+                    </div>
+
+                    <button class="icon-button">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="budget-values">
+
+                    <strong>
+                        $300.000
+                    </strong>
+
+                    <span>
+                        Gastado: $120.000
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-fill"
+                        style="width:40%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+
+                    Restante: $180.000
+
+                </small>
+
+
+            </div>
+
+        -->
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ===========================
+     MODAL PRESUPUESTO
+=========================== -->
+
+
+<div
+    id="budgetModal"
+    class="modal hidden">
+
+
+    <div
+        class="modal-content glass">
+
+
+        <div class="modal-header">
+
+
+            <h2>
+
+                Crear presupuesto
+
+            </h2>
+
+
+            <button
+
+                id="closeBudgetModal"
+
+                class="icon-button">
+
+
+                <i class="fa-solid fa-xmark"></i>
+
+
+            </button>
+
+
+        </div>
+
+
+
+        <form
+            id="budgetForm">
+
+
+            <!-- Categoría -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+
+                <div
+                    id="budgetCategorySelector"
+                    class="category-selector">
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Valor límite -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Límite mensual
+
+                </label>
+
+
+                <input
+
+                    id="budgetAmount"
+
+                    type="number"
+
+                    min="0"
+
+                    placeholder="$0"
+
+                    required>
+
+
+            </div>
+
+
+
+            <!-- Periodo -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Periodo
+
+                </label>
+
+
+                <select
+                    id="budgetPeriod">
+
+
+                    <option value="monthly">
+
+                        Mensual
+
+                    </option>
+
+
+                    <option value="weekly">
+
+                        Semanal
+
+                    </option>
+
+
+                    <option value="yearly">
+
+                        Anual
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <!-- Alertas -->
+
+            <div class="input-group checkbox-group">
+
+
+                <label>
+
+
+                    <input
+
+                        id="budgetAlert"
+
+                        type="checkbox">
+
+
+                    Avisar cuando alcance el límite
+
+
+                </label>
+
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+
+                    type="button"
+
+                    id="cancelBudget"
+
+                    class="secondary-button">
+
+
+                    Cancelar
+
+
+                </button>
+
+
+
+                <button
+
+                    type="submit"
+
+                    id="saveBudget"
+
+                    class="primary-button">
+
+
+                    Guardar presupuesto
+
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+  <!-- ===========================
+     SECCIÓN ESTADÍSTICAS
+=========================== -->
+
+<section
+    id="statisticsSection"
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Estadísticas
+
+            </h2>
+
+            <p>
+
+                Analiza tus hábitos financieros
+
+            </p>
+
+        </div>
+
+
+        <button
+            id="refreshStatistics"
+            class="icon-button">
+
+            <i class="fa-solid fa-rotate"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- Indicadores -->
+
+    <div class="statistics-grid">
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-arrow-trend-up"></i>
+
+
+            <div>
+
+                <span>
+
+                    Mayor gasto
+
+                </span>
+
+
+                <strong
+                    id="highestExpense">
+
+                    $0
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+
+            <div>
+
+                <span>
+
+                    Gasto promedio diario
+
+                </span>
+
+
+                <strong
+                    id="averageDailyExpense">
+
+                    $0
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+
+            <div>
+
+                <span>
+
+                    Categoría principal
+
+                </span>
+
+
+                <strong
+                    id="mainExpenseCategory">
+
+                    -
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- Gráficos -->
+
+    <div class="charts-container">
+
+
+        <div
+            class="chart-card glass">
+
+
+            <h3>
+
+                Gastos por categoría
+
+            </h3>
+
+
+            <canvas
+
+                id="categoryChart">
+
+            </canvas>
+
+
+        </div>
+
+
+
+        <div
+            class="chart-card glass">
+
+
+            <h3>
+
+                Evolución mensual
+
+            </h3>
+
+
+            <canvas
+
+                id="monthlyChart">
+
+            </canvas>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+<!-- ===========================
+     SECCIÓN CONFIGURACIÓN
+=========================== -->
+
+
+<section
+
+    id="settingsSection"
+
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+
+        <div>
+
+            <h2>
+
+                Configuración
+
+            </h2>
+
+
+            <p>
+
+                Personaliza tu aplicación
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="settings-container glass">
+
+
+
+        <!-- Datos -->
+
+        <div class="setting-item">
+
+
+            <div>
+
+
+                <i class="fa-solid fa-database"></i>
+
+
+                <div>
+
+
+                    <h3>
+
+                        Datos
+
+                    </h3>
+
+
+                    <p>
+
+                        Administra tu información financiera
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <!-- Exportar -->
+
+
+        <div class="setting-action">
+
+
+            <button
+
+                id="exportData"
+
+                class="secondary-button">
+
+
+                <i class="fa-solid fa-file-export"></i>
+
+
+                Exportar datos
+
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+        <!-- Importar -->
+
+
+        <div class="setting-action">
+
+
+            <label
+
+                for="importData"
+
+                class="secondary-button">
+
+
+                <i class="fa-solid fa-file-import"></i>
+
+
+                Importar datos
+
+
+            </label>
+
+
+            <input
+
+                id="importData"
+
+                type="file"
+
+                accept=".json"
+
+                hidden>
+
+
+        </div>
+
+
+
+
+        <!-- Limpiar -->
+
+
+        <div class="setting-action">
+
+
+            <button
+
+                id="clearData"
+
+                class="danger-button">
+
+
+                <i class="fa-solid fa-trash"></i>
+
+
+                Eliminar datos
+
+
+            </button>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<!-- ===========================
+     TOAST NOTIFICACIONES
+=========================== -->
+
+
+<div
+
+    id="toastContainer">
+
+
+</div>
+
+
+
+
+
+<!-- ===========================
+     LOADING SCREEN
+=========================== -->
+
+
+<div
+
+    id="loadingScreen"
+
+    class="loading-screen hidden">
+
+
+    <div class="loader">
+
+
+        <i class="fa-solid fa-wallet"></i>
+
+
+        <span>
+
+            Cargando Finanzas...
+
+        </span>
+
+
+    </div>
+
+
+</div>
+  <!-- ===========================
+     NAVEGACIÓN INFERIOR MÓVIL
+=========================== -->
+
+
+<nav
+
+    id="bottomNavigation"
+
+    class="bottom-navigation glass">
+
+
+    <button
+
+        class="nav-item active"
+
+        data-section="dashboardSection">
+
+
+        <i class="fa-solid fa-house"></i>
+
+
+        <span>
+
+            Inicio
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="transactionsSection">
+
+
+        <i class="fa-solid fa-receipt"></i>
+
+
+        <span>
+
+            Movimientos
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="budgetsSection">
+
+
+        <i class="fa-solid fa-wallet"></i>
+
+
+        <span>
+
+            Presupuesto
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="statisticsSection">
+
+
+        <i class="fa-solid fa-chart-simple"></i>
+
+
+        <span>
+
+            Estadísticas
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="settingsSection">
+
+
+        <i class="fa-solid fa-gear"></i>
+
+
+        <span>
+
+            Ajustes
+
+        </span>
+
+
+    </button>
+
+
+</nav>
+
+
+
+
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+ </main> 
+
+<footer
+
+    class="app-footer">
+
+
+    <p>
+
+        Finanzas v2.0
+
+    </p>
+
+
+    <span>
+
+        Control inteligente de tu dinero
+
+    </span>
+
+
+</footer>
+
+
+
+
+
+<!-- ===========================
+     SCRIPTS EXTERNOS
+=========================== -->
+
+
+<!-- Font Awesome -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
+
+
+
+
+<!-- Chart.js -->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+
+
+<!-- ===========================
+     SCRIPTS LOCALES
+=========================== -->
+<!-- ===========================
+     SCRIPTS LOCALES
+=========================== -->
+
+<script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>
+  
