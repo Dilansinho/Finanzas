@@ -1,0 +1,16556 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0F172A">
+
+<meta
+name="description"
+content="Administrador inteligente de finanzas personales">
+
+<title>Mis Finanzas</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="icon"
+href="icons/favicon.png">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<!-- Fondo -->
+
+<div class="background">
+
+<div class="gradient one"></div>
+
+<div class="gradient two"></div>
+
+<div class="gradient three"></div>
+
+<div class="noise"></div>
+
+</div>
+
+<!-- Loader -->
+
+<div
+id="loadingScreen"
+class="loading-screen">
+
+<div class="loader-card">
+
+<div class="loader-ring"></div>
+
+<h2>
+
+Mis Finanzas
+
+</h2>
+
+<p>
+
+Preparando tu información...
+
+</p>
+
+</div>
+
+</div>
+
+<!-- Aplicación -->
+
+<div
+id="app"
+class="app">
+
+<main class="main-container">
+
+<!-- ===========================
+     HEADER
+=========================== -->
+
+<header class="top-header glass">
+
+    <div class="header-left">
+
+        <div class="profile-image">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+        <div class="profile-info">
+
+            <span class="welcome-text">
+
+                Bienvenido
+
+            </span>
+
+            <h2 id="userName">
+
+                Usuario
+
+            </h2>
+
+            <span id="currentDate"
+                  class="current-date">
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <button
+        id="settingsButton"
+        class="icon-button">
+
+        <i class="fa-solid fa-gear"></i>
+
+    </button>
+
+</header>
+
+<!-- ===========================
+     TARJETA PRINCIPAL
+=========================== -->
+
+<section class="balance-card glass">
+
+    <span class="balance-label">
+
+        Balance Total
+
+    </span>
+
+    <h1 id="balance">
+
+        $0
+
+    </h1>
+
+    <div class="balance-details">
+
+        <div class="detail">
+
+            <span>
+
+                Ingresos
+
+            </span>
+
+            <strong id="income">
+
+                $0
+
+            </strong>
+
+        </div>
+
+        <div class="detail">
+
+            <span>
+
+                Gastos
+
+            </span>
+
+            <strong id="expense">
+
+                $0
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     ACCIONES RÁPIDAS
+=========================== -->
+
+<section class="quick-actions">
+
+    <button
+        id="incomeButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-circle-plus"></i>
+
+        <span>
+
+            Ingreso
+
+        </span>
+
+    </button>
+
+    <button
+        id="expenseButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-circle-minus"></i>
+
+        <span>
+
+            Gasto
+
+        </span>
+
+    </button>
+
+    <button
+        id="transferButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-right-left"></i>
+
+        <span>
+
+            Transferir
+
+        </span>
+
+    </button>
+
+    <button
+        id="savingButton"
+        class="action-card glass">
+
+        <i class="fa-solid fa-piggy-bank"></i>
+
+        <span>
+
+            Ahorro
+
+        </span>
+
+    </button>
+
+</section>
+
+<!-- ===========================
+     DASHBOARD
+=========================== -->
+
+<section class="dashboard-grid">
+
+    <!-- Saldo Disponible -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Saldo Disponible
+
+            </span>
+
+            <i class="fa-solid fa-wallet"></i>
+
+        </div>
+
+        <h2 id="availableBalance">
+
+            $0
+
+        </h2>
+
+    </article>
+
+    <!-- Meta de ahorro -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Meta de ahorro
+
+            </span>
+
+            <i class="fa-solid fa-bullseye"></i>
+
+        </div>
+
+        <h2 id="currentSaving">
+
+            $0
+
+        </h2>
+
+        <div class="progress">
+
+            <div
+                id="savingProgress"
+                class="progress-fill">
+
+            </div>
+
+        </div>
+
+        <div class="progress-footer">
+
+            <small>
+
+                Progreso
+
+            </small>
+
+            <strong
+                id="savingPercent">
+
+                0%
+
+            </strong>
+
+        </div>
+
+    </article>
+
+    <!-- Presupuesto general -->
+
+    <article class="dashboard-card glass">
+
+        <div class="card-header">
+
+            <span>
+
+                Presupuesto mensual
+
+            </span>
+
+            <i class="fa-solid fa-chart-column"></i>
+
+        </div>
+
+        <h2
+            id="monthlyBudgetCard">
+
+            $0
+
+        </h2>
+
+        <div class="progress">
+
+            <div
+                id="budgetProgress"
+                class="progress-fill">
+
+            </div>
+
+        </div>
+
+        <div class="progress-footer">
+
+            <small>
+
+                Disponible
+
+            </small>
+
+            <strong
+                id="remainingBudget">
+
+                $0
+
+            </strong>
+
+        </div>
+
+    </article>
+
+</section>
+
+<!-- ===========================
+     PRESUPUESTO POR CATEGORÍAS
+=========================== -->
+
+<section
+    class="glass category-budget">
+
+    <div class="section-title">
+
+        <h3>
+
+            Presupuesto por categorías
+
+        </h3>
+
+        <button
+            id="addCategoryBudget"
+            class="mini-button">
+
+            <i class="fa-solid fa-plus"></i>
+
+        </button>
+
+    </div>
+
+    <div
+        id="categoryBudgetList">
+
+        <!-- El JavaScript agregará aquí
+             cada categoría con:
+
+             🍔 Comida
+             Presupuesto: $400.000
+             Gastado: $120.000
+             Barra de progreso
+
+        -->
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     INDICADORES
+=========================== -->
+
+<section class="stats-row">
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-arrow-trend-up"></i>
+
+        <span>
+
+            Hoy
+
+        </span>
+
+        <strong
+            id="todayExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-calendar-week"></i>
+
+        <span>
+
+            Semana
+
+        </span>
+
+        <strong
+            id="weekExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-calendar-days"></i>
+
+        <span>
+
+            Mes
+
+        </span>
+
+        <strong
+            id="monthExpense">
+
+            $0
+
+        </strong>
+
+    </article>
+
+    <article class="mini-stat glass">
+
+        <i class="fa-solid fa-chart-line"></i>
+
+        <span>
+
+            Promedio
+
+        </span>
+
+        <strong
+            id="dailyAverage">
+
+            $0
+
+        </strong>
+
+    </article>
+
+</section>
+
+<!-- ===========================
+     HISTORIAL
+=========================== -->
+
+<section class="transactions-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Últimos movimientos
+
+            </h2>
+
+            <small>
+
+                Se muestran los movimientos más recientes
+
+            </small>
+
+        </div>
+
+        <button
+            id="viewAllTransactions"
+            class="glass text-button">
+
+            Ver todo
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+         BUSCADOR
+    =========================== -->
+
+    <div class="search-box glass">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+
+            id="searchTransaction"
+
+            type="text"
+
+            placeholder="Buscar movimiento...">
+
+    </div>
+
+    <!-- ===========================
+         FILTROS
+    =========================== -->
+
+    <div class="filters">
+
+        <select
+            id="filterType"
+            class="glass">
+
+            <option value="all">
+
+                Todos
+
+            </option>
+
+            <option value="income">
+
+                Ingresos
+
+            </option>
+
+            <option value="expense">
+
+                Gastos
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterCategory"
+            class="glass">
+
+            <option value="all">
+
+                Categorías
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterAccount"
+            class="glass">
+
+            <option value="all">
+
+                Cuentas
+
+            </option>
+
+        </select>
+
+        <select
+            id="filterOrder"
+            class="glass">
+
+            <option value="new">
+
+                Más recientes
+
+            </option>
+
+            <option value="old">
+
+                Más antiguos
+
+            </option>
+
+            <option value="high">
+
+                Mayor valor
+
+            </option>
+
+            <option value="low">
+
+                Menor valor
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- ===========================
+         LISTA
+    =========================== -->
+
+    <div
+        id="recentTransactions"
+        class="transactions-list">
+
+    </div>
+
+</section>
+
+<!-- ===========================
+     TEMPLATE MOVIMIENTO
+=========================== -->
+
+<template
+    id="transactionTemplate">
+
+    <article
+        class="transaction-card glass">
+
+        <div
+            class="transaction-left">
+
+            <div
+                class="transaction-icon">
+
+                🍔
+
+            </div>
+
+            <div>
+
+                <h4
+                    class="transaction-title">
+
+                    Movimiento
+
+                </h4>
+
+                <small
+                    class="transaction-subtitle">
+
+                    Fecha
+
+                </small>
+
+                <small
+                    class="transaction-payment">
+
+                    Cuenta
+
+                </small>
+
+            </div>
+
+        </div>
+
+        <div
+            class="transaction-right">
+
+            <strong
+                class="transaction-amount">
+
+                $0
+
+            </strong>
+
+            <div
+                class="transaction-actions">
+
+                <button
+                    class="edit-btn icon-button">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+                <button
+                    class="delete-btn icon-button">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</template>
+
+<!-- ===========================
+     ESTADO VACÍO
+=========================== -->
+
+<div
+    id="emptyTransactions"
+    class="empty-state glass">
+
+<!-- ===========================
+     MODAL MOVIMIENTO
+=========================== -->
+
+<div
+    id="transactionModal"
+    class="modal hidden">
+
+    <div class="modal-content glass">
+
+        <div class="modal-header">
+
+            <h2>
+
+                Nuevo movimiento
+
+            </h2>
+
+            <button
+                id="closeTransaction"
+                class="icon-button">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form
+            id="transactionForm">
+
+            <!-- Tipo -->
+
+            <div class="type-selector">
+
+                <button
+                    type="button"
+                    id="selectIncome"
+                    class="type-button">
+
+                    <i class="fa-solid fa-circle-plus"></i>
+
+                    Ingreso
+
+                </button>
+
+                <button
+                    type="button"
+                    id="selectExpense"
+                    class="type-button active">
+
+                    <i class="fa-solid fa-circle-minus"></i>
+
+                    Gasto
+
+                </button>
+
+            </div>
+
+            <!-- Valor -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Valor
+
+                </label>
+
+                <input
+
+                    id="amount"
+
+                    type="number"
+
+                    min="0"
+
+                    placeholder="$0"
+
+                    required>
+
+            </div>
+
+            <!-- Cuenta -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Cuenta
+
+                </label>
+
+                <div
+                    id="paymentSelector"
+                    class="account-selector">
+
+                </div>
+
+            </div>
+
+            <!-- Categoría -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+                <div
+                    id="categorySelector"
+                    class="category-selector">
+
+                </div>
+
+            </div>
+
+            <!-- Presupuesto categoría -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Presupuesto de esta categoría
+
+                </label>
+
+                <div
+                    id="categoryBudgetInfo"
+                    class="budget-preview glass">
+
+                    <strong>
+
+                        Presupuesto:
+
+                    </strong>
+
+                    <span
+                        id="selectedCategoryBudget">
+
+                        $0
+
+                    </span>
+
+                    <div class="progress">
+
+                        <div
+                            id="categoryBudgetProgress"
+                            class="progress-fill">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Descripción -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Descripción
+
+                </label>
+
+                <input
+
+                    id="description"
+
+                    type="text"
+
+                    maxlength="60"
+
+                    placeholder="Ej. Almuerzo">
+
+            </div>
+
+            <!-- Fecha -->
+
+            <div class="double-grid">
+
+                <div class="input-group">
+
+                    <label>
+
+                        Fecha
+
+                    </label>
+
+                    <input
+
+                        id="transactionDate"
+
+                        type="date">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>
+
+                        Hora
+
+                    </label>
+
+                    <input
+
+                        id="transactionTime"
+
+                        type="time">
+
+                </div>
+
+            </div>
+
+            <!-- Notas -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Notas
+
+                </label>
+
+                <textarea
+
+                    id="notes"
+
+                    rows="3"
+
+                    placeholder="Información adicional..."></textarea>
+
+            </div>
+
+            <!-- Etiquetas -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Etiquetas
+
+                </label>
+
+                <input
+
+                    id="tags"
+
+                    type="text"
+
+                    placeholder="hogar, comida, trabajo...">
+
+            </div>
+
+            <!-- Comprobante -->
+
+            <div class="input-group">
+
+                <label>
+
+                    Comprobante (Opcional)
+
+                </label>
+
+                <input
+
+                    id="receipt"
+
+                    type="file"
+
+                    accept="image/*">
+
+            </div>
+
+            <!-- Botones -->
+
+            <div class="modal-actions">
+
+                <button
+
+                    id="cancelTransaction"
+
+                    type="button"
+
+                    class="secondary-button">
+
+                    Cancelar
+
+                </button>
+
+                <button
+
+                    id="saveTransaction"
+
+                    type="submit"
+
+                    class="primary-button">
+
+                    Guardar movimiento
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <i
+        class="fa-solid fa-wallet"></i>
+
+    <h3>
+
+        Aún no tienes movimientos
+
+    </h3>
+
+    <p>
+
+        Registra tu primer ingreso o gasto para comenzar a visualizar tus estadísticas.
+
+    </p>
+
+</div>
+
+<!-- ===========================
+     SECCIÓN PRESUPUESTOS
+=========================== -->
+
+<section
+    id="budgetsSection"
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Presupuestos
+
+            </h2>
+
+            <p>
+
+                Controla tus gastos por categoría
+
+            </p>
+
+        </div>
+
+
+        <button
+            id="addBudgetButton"
+            class="primary-button">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Nuevo presupuesto
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Resumen general -->
+
+    <div class="budget-summary glass">
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <div>
+
+                <span>
+
+                    Presupuesto total
+
+                </span>
+
+                <strong
+                    id="totalBudgetAmount">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <div>
+
+                <span>
+
+                    Gastado
+
+                </span>
+
+                <strong
+                    id="totalSpentBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+            <div>
+
+                <span>
+
+                    Disponible
+
+                </span>
+
+                <strong
+                    id="totalRemainingBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Lista de presupuestos -->
+
+    <div
+        id="budgetList"
+        class="budget-grid">
+
+
+        <!--
+            Ejemplo dinámico:
+
+            <div class="budget-card glass">
+
+                <div class="budget-header">
+
+                    <div class="category-info">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        <span>
+                            Comida
+                        </span>
+
+                    </div>
+
+                    <button class="icon-button">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="budget-values">
+
+                    <strong>
+                        $300.000
+                    </strong>
+
+                    <span>
+                        Gastado: $120.000
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-fill"
+                        style="width:40%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+
+                    Restante: $180.000
+
+                </small>
+
+
+            </div>
+
+        -->
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ===========================
+     MODAL PRESUPUESTO
+=========================== -->
+
+
+<div
+    id="budgetModal"
+    class="modal hidden">
+
+
+    <div
+        class="modal-content glass">
+
+
+        <div class="modal-header">
+
+
+            <h2>
+
+                Crear presupuesto
+
+            </h2>
+
+
+            <button
+
+                id="closeBudgetModal"
+
+                class="icon-button">
+
+
+                <i class="fa-solid fa-xmark"></i>
+
+
+            </button>
+
+
+        </div>
+
+
+
+        <form
+            id="budgetForm">
+
+
+            <!-- Categoría -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+
+                <div
+                    id="budgetCategorySelector"
+                    class="category-selector">
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Valor límite -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Límite mensual
+
+                </label>
+
+
+                <input
+
+                    id="budgetAmount"
+
+                    type="number"
+
+                    min="0"
+
+                    placeholder="$0"
+
+                    required>
+
+
+            </div>
+
+
+
+            <!-- Periodo -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Periodo
+
+                </label>
+
+
+                <select
+                    id="budgetPeriod">
+
+
+                    <option value="monthly">
+
+                        Mensual
+
+                    </option>
+
+
+                    <option value="weekly">
+
+                        Semanal
+
+                    </option>
+
+
+                    <option value="yearly">
+
+                        Anual
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <!-- Alertas -->
+
+            <div class="input-group checkbox-group">
+
+
+                <label>
+
+
+                    <input
+
+                        id="budgetAlert"
+
+                        type="checkbox">
+
+
+                    Avisar cuando alcance el límite
+
+
+                </label>
+
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+
+                    type="button"
+
+                    id="cancelBudget"
+
+                    class="secondary-button">
+
+
+                    Cancelar
+
+
+                </button>
+
+
+
+                <button
+
+                    type="submit"
+
+                    id="saveBudget"
+
+                    class="primary-button">
+
+
+                    Guardar presupuesto
+
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+<!-- ===========================
+     SECCIÓN PRESUPUESTOS
+=========================== -->
+
+<section
+    id="budgetsSection"
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Presupuestos
+
+            </h2>
+
+            <p>
+
+                Controla tus gastos por categoría
+
+            </p>
+
+        </div>
+
+
+        <button
+            id="addBudgetButton"
+            class="primary-button">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Nuevo presupuesto
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Resumen general -->
+
+    <div class="budget-summary glass">
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            <div>
+
+                <span>
+
+                    Presupuesto total
+
+                </span>
+
+                <strong
+                    id="totalBudgetAmount">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <div>
+
+                <span>
+
+                    Gastado
+
+                </span>
+
+                <strong
+                    id="totalSpentBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="summary-card">
+
+            <i class="fa-solid fa-piggy-bank"></i>
+
+            <div>
+
+                <span>
+
+                    Disponible
+
+                </span>
+
+                <strong
+                    id="totalRemainingBudget">
+
+                    $0
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Lista de presupuestos -->
+
+    <div
+        id="budgetList"
+        class="budget-grid">
+
+
+        <!--
+            Ejemplo dinámico:
+
+            <div class="budget-card glass">
+
+                <div class="budget-header">
+
+                    <div class="category-info">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        <span>
+                            Comida
+                        </span>
+
+                    </div>
+
+                    <button class="icon-button">
+
+                        <i class="fa-solid fa-ellipsis"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="budget-values">
+
+                    <strong>
+                        $300.000
+                    </strong>
+
+                    <span>
+                        Gastado: $120.000
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-fill"
+                        style="width:40%">
+
+                    </div>
+
+                </div>
+
+
+                <small>
+
+                    Restante: $180.000
+
+                </small>
+
+
+            </div>
+
+        -->
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ===========================
+     MODAL PRESUPUESTO
+=========================== -->
+
+
+<div
+    id="budgetModal"
+    class="modal hidden">
+
+
+    <div
+        class="modal-content glass">
+
+
+        <div class="modal-header">
+
+
+            <h2>
+
+                Crear presupuesto
+
+            </h2>
+
+
+            <button
+
+                id="closeBudgetModal"
+
+                class="icon-button">
+
+
+                <i class="fa-solid fa-xmark"></i>
+
+
+            </button>
+
+
+        </div>
+
+
+
+        <form
+            id="budgetForm">
+
+
+            <!-- Categoría -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+
+                <div
+                    id="budgetCategorySelector"
+                    class="category-selector">
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Valor límite -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Límite mensual
+
+                </label>
+
+
+                <input
+
+                    id="budgetAmount"
+
+                    type="number"
+
+                    min="0"
+
+                    placeholder="$0"
+
+                    required>
+
+
+            </div>
+
+
+
+            <!-- Periodo -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    Periodo
+
+                </label>
+
+
+                <select
+                    id="budgetPeriod">
+
+
+                    <option value="monthly">
+
+                        Mensual
+
+                    </option>
+
+
+                    <option value="weekly">
+
+                        Semanal
+
+                    </option>
+
+
+                    <option value="yearly">
+
+                        Anual
+
+                    </option>
+
+
+                </select>
+
+
+            </div>
+
+
+
+            <!-- Alertas -->
+
+            <div class="input-group checkbox-group">
+
+
+                <label>
+
+
+                    <input
+
+                        id="budgetAlert"
+
+                        type="checkbox">
+
+
+                    Avisar cuando alcance el límite
+
+
+                </label>
+
+
+            </div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+
+                    type="button"
+
+                    id="cancelBudget"
+
+                    class="secondary-button">
+
+
+                    Cancelar
+
+
+                </button>
+
+
+
+                <button
+
+                    type="submit"
+
+                    id="saveBudget"
+
+                    class="primary-button">
+
+
+                    Guardar presupuesto
+
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+<!-- ===========================
+     SECCIÓN ESTADÍSTICAS
+=========================== -->
+
+<section
+    id="statisticsSection"
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+
+                Estadísticas
+
+            </h2>
+
+            <p>
+
+                Analiza tus hábitos financieros
+
+            </p>
+
+        </div>
+
+
+        <button
+            id="refreshStatistics"
+            class="icon-button">
+
+            <i class="fa-solid fa-rotate"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- Indicadores -->
+
+    <div class="statistics-grid">
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-arrow-trend-up"></i>
+
+
+            <div>
+
+                <span>
+
+                    Mayor gasto
+
+                </span>
+
+
+                <strong
+                    id="highestExpense">
+
+                    $0
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+
+            <div>
+
+                <span>
+
+                    Gasto promedio diario
+
+                </span>
+
+
+                <strong
+                    id="averageDailyExpense">
+
+                    $0
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="stat-card glass">
+
+            <i class="fa-solid fa-chart-pie"></i>
+
+
+            <div>
+
+                <span>
+
+                    Categoría principal
+
+                </span>
+
+
+                <strong
+                    id="mainExpenseCategory">
+
+                    -
+
+                </strong>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- Gráficos -->
+
+    <div class="charts-container">
+
+
+        <div
+            class="chart-card glass">
+
+
+            <h3>
+
+                Gastos por categoría
+
+            </h3>
+
+
+            <canvas
+
+                id="categoryChart">
+
+            </canvas>
+
+
+        </div>
+
+
+
+        <div
+            class="chart-card glass">
+
+
+            <h3>
+
+                Evolución mensual
+
+            </h3>
+
+
+            <canvas
+
+                id="monthlyChart">
+
+            </canvas>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+<!-- ===========================
+     SECCIÓN CONFIGURACIÓN
+=========================== -->
+
+
+<section
+
+    id="settingsSection"
+
+    class="section-container hidden">
+
+
+    <div class="section-header">
+
+
+        <div>
+
+            <h2>
+
+                Configuración
+
+            </h2>
+
+
+            <p>
+
+                Personaliza tu aplicación
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="settings-container glass">
+
+
+
+        <!-- Datos -->
+
+        <div class="setting-item">
+
+
+            <div>
+
+
+                <i class="fa-solid fa-database"></i>
+
+
+                <div>
+
+
+                    <h3>
+
+                        Datos
+
+                    </h3>
+
+
+                    <p>
+
+                        Administra tu información financiera
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <!-- Exportar -->
+
+
+        <div class="setting-action">
+
+
+            <button
+
+                id="exportData"
+
+                class="secondary-button">
+
+
+                <i class="fa-solid fa-file-export"></i>
+
+
+                Exportar datos
+
+
+            </button>
+
+
+        </div>
+
+
+
+
+
+        <!-- Importar -->
+
+
+        <div class="setting-action">
+
+
+            <label
+
+                for="importData"
+
+                class="secondary-button">
+
+
+                <i class="fa-solid fa-file-import"></i>
+
+
+                Importar datos
+
+
+            </label>
+
+
+            <input
+
+                id="importData"
+
+                type="file"
+
+                accept=".json"
+
+                hidden>
+
+
+        </div>
+
+
+
+
+        <!-- Limpiar -->
+
+
+        <div class="setting-action">
+
+
+            <button
+
+                id="clearData"
+
+                class="danger-button">
+
+
+                <i class="fa-solid fa-trash"></i>
+
+
+                Eliminar datos
+
+
+            </button>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+<!-- ===========================
+     TOAST NOTIFICACIONES
+=========================== -->
+
+
+<div
+
+    id="toastContainer">
+
+
+</div>
+
+
+
+
+
+<!-- ===========================
+     LOADING SCREEN
+=========================== -->
+
+
+<div
+
+    id="loadingScreen"
+
+    class="loading-screen hidden">
+
+
+    <div class="loader">
+
+
+        <i class="fa-solid fa-wallet"></i>
+
+
+        <span>
+
+            Cargando Finanzas...
+
+        </span>
+
+
+    </div>
+
+
+</div>
+<!-- ===========================
+     NAVEGACIÓN INFERIOR MÓVIL
+=========================== -->
+
+
+<nav
+
+    id="bottomNavigation"
+
+    class="bottom-navigation glass">
+
+
+    <button
+
+        class="nav-item active"
+
+        data-section="dashboardSection">
+
+
+        <i class="fa-solid fa-house"></i>
+
+
+        <span>
+
+            Inicio
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="transactionsSection">
+
+
+        <i class="fa-solid fa-receipt"></i>
+
+
+        <span>
+
+            Movimientos
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="budgetsSection">
+
+
+        <i class="fa-solid fa-wallet"></i>
+
+
+        <span>
+
+            Presupuesto
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="statisticsSection">
+
+
+        <i class="fa-solid fa-chart-simple"></i>
+
+
+        <span>
+
+            Estadísticas
+
+        </span>
+
+
+    </button>
+
+
+
+
+    <button
+
+        class="nav-item"
+
+        data-section="settingsSection">
+
+
+        <i class="fa-solid fa-gear"></i>
+
+
+        <span>
+
+            Ajustes
+
+        </span>
+
+
+    </button>
+
+
+</nav>
+
+
+
+
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+
+
+<footer
+
+    class="app-footer">
+
+
+    <p>
+
+        Finanzas v2.0
+
+    </p>
+
+
+    <span>
+
+        Control inteligente de tu dinero
+
+    </span>
+
+
+</footer>
+
+
+
+
+
+<!-- ===========================
+     SCRIPTS EXTERNOS
+=========================== -->
+
+
+<!-- Font Awesome -->
+
+<script
+
+src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js">
+
+</script>
+
+
+
+<!-- Chart.js -->
+
+<script
+
+src="https://cdn.jsdelivr.net/npm/chart.js">
+
+</script>
+
+
+
+
+
+<!-- ===========================
+     SCRIPTS LOCALES
+=========================== -->
+
+
+<script
+
+src="app.js">
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 1/10
+   VARIABLES - RESET - TEMA BASE
+========================================================= */
+
+
+/* ===========================
+   IMPORTACIÓN DE FUENTES
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+
+/* ===========================
+   VARIABLES GLOBALES
+=========================== */
+
+:root {
+
+
+    /* Colores principales */
+
+    --primary-color: #6c63ff;
+
+    --primary-light: #8b85ff;
+
+    --secondary-color: #00c896;
+
+
+    /* Estados */
+
+    --success-color: #22c55e;
+
+    --danger-color: #ef4444;
+
+    --warning-color: #f59e0b;
+
+
+
+    /* Fondo */
+
+    --background-main: #0f172a;
+
+    --background-secondary: #111827;
+
+
+
+    /* Glass */
+
+    --glass-background: rgba(255,255,255,0.08);
+
+    --glass-border: rgba(255,255,255,0.15);
+
+    --glass-shadow: 0 8px 32px rgba(0,0,0,0.25);
+
+
+
+    /* Texto */
+
+    --text-primary: #f8fafc;
+
+    --text-secondary: #cbd5e1;
+
+    --text-muted: #94a3b8;
+
+
+
+    /* Bordes */
+
+    --border-radius-sm: 10px;
+
+    --border-radius-md: 18px;
+
+    --border-radius-lg: 28px;
+
+
+
+    /* Espaciado */
+
+    --spacing-xs: 5px;
+
+    --spacing-sm: 10px;
+
+    --spacing-md: 20px;
+
+    --spacing-lg: 30px;
+
+
+
+    /* Transiciones */
+
+    --transition-fast: .2s ease;
+
+    --transition-normal: .35s ease;
+
+
+}
+
+
+
+
+
+/* ===========================
+   RESET GENERAL
+=========================== */
+
+
+* {
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    font-family:'Inter', sans-serif;
+
+}
+
+
+
+html {
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body {
+
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at top left,
+        rgba(108,99,255,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(0,200,150,.20),
+        transparent 35%
+    ),
+
+    var(--background-main);
+
+
+    color:var(--text-primary);
+
+
+    overflow-x:hidden;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SCROLL PERSONALIZADO
+=========================== */
+
+
+::-webkit-scrollbar {
+
+    width:8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:transparent;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+
+    background:rgba(255,255,255,.2);
+
+    border-radius:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ELEMENTOS BASE
+=========================== */
+
+
+button {
+
+    border:none;
+
+    cursor:pointer;
+
+    color:inherit;
+
+}
+
+
+
+input,
+
+textarea,
+
+select {
+
+
+    outline:none;
+
+    border:none;
+
+}
+
+
+
+a {
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+
+img {
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+
+
+
+
+/* ===========================
+   CLASE GLASS PRINCIPAL
+=========================== */
+
+
+.glass {
+
+
+    background:
+
+    var(--glass-background);
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    box-shadow:
+
+    var(--glass-shadow);
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
+
+
+.app-container {
+
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SECCIONES GENERALES
+=========================== */
+
+
+.section-container {
+
+
+    width:100%;
+
+    animation:
+
+    fadeIn .35s ease;
+
+
+}
+
+
+
+
+
+.hidden {
+
+
+    display:none !important;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ANIMACIÓN BASE
+=========================== */
+
+
+@keyframes fadeIn {
+
+
+    from {
+
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+        transform:translateY(0);
+
+
+    }
+
+
+}
+
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 2/10
+   LAYOUT GENERAL
+========================================================= */
+
+
+
+/* ===========================
+   MAIN APP STRUCTURE
+=========================== */
+
+
+main {
+
+    width:100%;
+
+}
+
+
+
+.dashboard-layout {
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    1fr;
+
+
+    gap:var(--spacing-lg);
+
+
+}
+
+
+
+
+
+/* ===========================
+   HEADER GENERAL
+=========================== */
+
+
+.app-header {
+
+
+    width:100%;
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+    margin-bottom:25px;
+
+
+    border-radius:var(--border-radius-lg);
+
+
+}
+
+
+
+
+.header-left {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+.header-right {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   LOGO / BRAND
+=========================== */
+
+
+.brand {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+}
+
+
+
+.brand-icon {
+
+
+    width:45px;
+
+
+    height:45px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    var(--primary-color),
+
+    var(--secondary-color)
+
+    );
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+.brand-title {
+
+
+    font-size:22px;
+
+
+    font-weight:700;
+
+
+    letter-spacing:.5px;
+
+
+}
+
+
+
+.brand-subtitle {
+
+
+    font-size:13px;
+
+
+    color:var(--text-secondary);
+
+
+}
+
+
+
+
+
+/* ===========================
+   USER PROFILE
+=========================== */
+
+
+.profile-container {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+}
+
+
+
+.profile-image {
+
+
+    width:45px;
+
+
+    height:45px;
+
+
+    border-radius:50%;
+
+
+    object-fit:cover;
+
+
+    border:
+
+    2px solid rgba(255,255,255,.25);
+
+
+}
+
+
+
+.profile-info {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+.profile-name {
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+.profile-status {
+
+
+    font-size:12px;
+
+
+    color:var(--text-muted);
+
+
+}
+
+
+
+
+
+/* ===========================
+   CONTENT WRAPPER
+=========================== */
+
+
+.content-wrapper {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SECTION HEADER
+=========================== */
+
+
+.section-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.section-header h2 {
+
+
+    font-size:24px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+.section-header p {
+
+
+    margin-top:5px;
+
+
+    color:var(--text-secondary);
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   GRID SYSTEM
+=========================== */
+
+
+.grid {
+
+
+    display:grid;
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+.grid-2 {
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+}
+
+
+
+
+.grid-3 {
+
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+
+}
+
+
+
+
+.grid-4 {
+
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+
+}
+
+
+
+
+
+/* ===========================
+   FLEX UTILITIES
+=========================== */
+
+
+.flex {
+
+
+    display:flex;
+
+
+}
+
+
+
+.flex-center {
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+}
+
+
+
+.flex-between {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+.flex-column {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SPACING UTILITIES
+=========================== */
+
+
+.mt-sm {
+
+
+    margin-top:var(--spacing-sm);
+
+
+}
+
+
+
+.mt-md {
+
+
+    margin-top:var(--spacing-md);
+
+
+}
+
+
+
+.mt-lg {
+
+
+    margin-top:var(--spacing-lg);
+
+
+}
+
+
+
+.mb-md {
+
+
+    margin-bottom:var(--spacing-md);
+
+
+}
+
+
+
+
+/* ===========================
+   DIVIDER
+=========================== */
+
+
+.divider {
+
+
+    width:100%;
+
+
+    height:1px;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    margin:20px 0;
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 3/10
+   DASHBOARD
+========================================================= */
+
+
+
+/* ===========================
+   DASHBOARD HEADER BALANCE
+=========================== */
+
+
+.balance-container {
+
+
+    width:100%;
+
+
+    padding:30px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.balance-container::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    width:220px;
+
+
+    height:220px;
+
+
+    right:-80px;
+
+
+    top:-80px;
+
+
+    background:
+
+    rgba(108,99,255,.35);
+
+
+    border-radius:50%;
+
+
+    filter:blur(40px);
+
+
+}
+
+
+
+
+
+.balance-content {
+
+
+    position:relative;
+
+
+    z-index:2;
+
+
+}
+
+
+
+
+
+.balance-label {
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:15px;
+
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+
+
+.balance-value {
+
+
+    font-size:42px;
+
+
+    font-weight:800;
+
+
+    letter-spacing:-1px;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+
+.balance-description {
+
+
+    color:
+
+    var(--text-muted);
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DASHBOARD ACTIONS
+=========================== */
+
+
+.dashboard-actions {
+
+
+    display:flex;
+
+
+    gap:15px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   PRIMARY ACTION BUTTON
+=========================== */
+
+
+.action-button {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    gap:10px;
+
+
+    padding:14px 22px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.action-button:hover {
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+
+.action-button.primary {
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    var(--primary-color),
+
+    var(--primary-light)
+
+    );
+
+
+}
+
+
+
+
+
+.action-button.secondary {
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+}
+
+
+
+
+
+/* ===========================
+   FINANCIAL OVERVIEW
+=========================== */
+
+
+.financial-overview {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+
+    gap:20px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+.financial-card {
+
+
+    padding:22px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+.financial-icon {
+
+
+    width:50px;
+
+
+    height:50px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:15px;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+/* Ingresos */
+
+
+.income-icon {
+
+
+    background:
+
+    rgba(34,197,94,.18);
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+
+
+/* Gastos */
+
+
+.expense-icon {
+
+
+    background:
+
+    rgba(239,68,68,.18);
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+/* Balance */
+
+
+.balance-icon {
+
+
+    background:
+
+    rgba(108,99,255,.18);
+
+
+    color:
+
+    var(--primary-light);
+
+
+}
+
+
+
+
+
+.financial-info {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+
+
+.financial-title {
+
+
+    font-size:14px;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+}
+
+
+
+
+
+.financial-number {
+
+
+    margin-top:5px;
+
+
+    font-size:22px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MONEY STATES
+=========================== */
+
+
+.money-positive {
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+.money-negative {
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   QUICK SUMMARY
+=========================== */
+
+
+.quick-summary {
+
+
+    margin-top:25px;
+
+
+    padding:25px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+}
+
+
+
+.quick-summary h3 {
+
+
+    font-size:18px;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+.summary-grid {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+
+    gap:15px;
+
+
+}
+
+
+
+.summary-item {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:6px;
+
+
+}
+
+
+
+.summary-item span {
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+.summary-item strong {
+
+
+    font-size:18px;
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 4/10
+   TARJETAS GLASS
+========================================================= */
+
+
+
+/* ===========================
+   CARD BASE
+=========================== */
+
+
+.card {
+
+
+    width:100%;
+
+
+    padding:22px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.card:hover {
+
+
+    transform:translateY(-5px);
+
+
+}
+
+
+
+
+
+/* ===========================
+   CARD HEADER
+=========================== */
+
+
+.card-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:18px;
+
+
+}
+
+
+
+
+
+.card-title {
+
+
+    font-size:17px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+.card-subtitle {
+
+
+    margin-top:5px;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ICON CONTAINER
+=========================== */
+
+
+.icon-box {
+
+
+    width:48px;
+
+
+    height:48px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    border-radius:15px;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+.icon-primary {
+
+
+    background:
+
+    rgba(108,99,255,.2);
+
+
+    color:
+
+    var(--primary-light);
+
+
+}
+
+
+
+.icon-success {
+
+
+    background:
+
+    rgba(34,197,94,.18);
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+.icon-danger {
+
+
+    background:
+
+    rgba(239,68,68,.18);
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+.icon-warning {
+
+
+    background:
+
+    rgba(245,158,11,.18);
+
+
+    color:
+
+    var(--warning-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   CARD INFORMATION
+=========================== */
+
+
+.card-value {
+
+
+    font-size:28px;
+
+
+    font-weight:800;
+
+
+    margin:15px 0;
+
+
+}
+
+
+
+
+
+.card-description {
+
+
+    font-size:14px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT CARDS
+=========================== */
+
+
+.account-card {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.account-info {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+.account-name {
+
+
+    font-size:16px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.account-type {
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.account-balance {
+
+
+    font-size:20px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY CARDS
+=========================== */
+
+
+.category-card {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+}
+
+
+
+
+
+.category-left {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+.category-name {
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.category-amount {
+
+
+    font-size:16px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SAVING GOALS
+=========================== */
+
+
+.goal-card {
+
+
+    position:relative;
+
+
+}
+
+
+
+
+
+.goal-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.goal-name {
+
+
+    font-size:16px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+.goal-target {
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+.goal-values {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    margin:15px 0;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   PROGRESS BAR GENERAL
+=========================== */
+
+
+.progress {
+
+
+    width:100%;
+
+
+    height:10px;
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+
+    border-radius:20px;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.progress-fill {
+
+
+    height:100%;
+
+
+    width:0%;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    var(--primary-color),
+
+    var(--secondary-color)
+
+    );
+
+
+    transition:
+
+    width .5s ease;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TAGS
+=========================== */
+
+
+.tag {
+
+
+    display:inline-flex;
+
+
+    align-items:center;
+
+
+    padding:
+
+    5px 12px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:12px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   STATUS BADGES
+=========================== */
+
+
+.status {
+
+
+    padding:
+
+    6px 12px;
+
+
+    border-radius:20px;
+
+
+    font-size:12px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.status-success {
+
+
+    background:
+
+    rgba(34,197,94,.15);
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+.status-danger {
+
+
+    background:
+
+    rgba(239,68,68,.15);
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+.status-warning {
+
+
+    background:
+
+    rgba(245,158,11,.15);
+
+
+    color:
+
+    var(--warning-color);
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 5/10
+   HISTORIAL DE MOVIMIENTOS
+========================================================= */
+
+
+
+/* ===========================
+   TRANSACTIONS HEADER
+=========================== */
+
+
+.transactions-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   SEARCH BAR
+=========================== */
+
+
+.search-container {
+
+
+    position:relative;
+
+
+    width:100%;
+
+
+    max-width:400px;
+
+
+}
+
+
+
+.search-container i {
+
+
+    position:absolute;
+
+
+    left:15px;
+
+
+    top:50%;
+
+
+    transform:translateY(-50%);
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.search-input {
+
+
+    width:100%;
+
+
+    padding:
+
+    14px 18px 14px 45px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    color:
+
+    var(--text-primary);
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+.search-input::placeholder {
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+/* ===========================
+   FILTERS
+=========================== */
+
+
+.filters-container {
+
+
+    display:flex;
+
+
+    gap:12px;
+
+
+    flex-wrap:wrap;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.filter-button {
+
+
+    padding:
+
+    10px 18px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:13px;
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.filter-button:hover {
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+
+
+.filter-button.active {
+
+
+    background:
+
+    var(--primary-color);
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTIONS CONTAINER
+=========================== */
+
+
+.transactions-container {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTION ITEM
+=========================== */
+
+
+.transaction-item {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    padding:18px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.transaction-item:hover {
+
+
+    transform:translateX(5px);
+
+
+}
+
+
+
+
+
+.transaction-left {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTION ICON
+=========================== */
+
+
+.transaction-icon {
+
+
+    width:50px;
+
+
+    height:50px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:15px;
+
+
+    font-size:20px;
+
+
+}
+
+
+
+
+
+.transaction-icon.income {
+
+
+    background:
+
+    rgba(34,197,94,.15);
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+
+
+.transaction-icon.expense {
+
+
+    background:
+
+    rgba(239,68,68,.15);
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTION INFORMATION
+=========================== */
+
+
+.transaction-info {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:4px;
+
+
+}
+
+
+
+
+
+.transaction-title {
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.transaction-category {
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.transaction-date {
+
+
+    font-size:12px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTION VALUE
+=========================== */
+
+
+.transaction-value {
+
+
+    font-size:17px;
+
+
+    font-weight:700;
+
+
+    text-align:right;
+
+
+}
+
+
+
+
+
+.transaction-value.income {
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+
+
+.transaction-value.expense {
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+
+.empty-state {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    padding:50px 20px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.empty-state i {
+
+
+    font-size:45px;
+
+
+    margin-bottom:15px;
+
+
+    opacity:.5;
+
+
+}
+
+
+
+
+
+.empty-state h3 {
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+
+
+.empty-state p {
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TRANSACTION DETAILS
+=========================== */
+
+
+.transaction-extra {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    margin-top:8px;
+
+
+}
+
+
+
+
+
+.transaction-tag {
+
+
+    font-size:11px;
+
+
+    padding:
+
+    4px 10px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+}
+
+
+
+
+
+/* ===========================
+   MOVEMENT SUMMARY
+=========================== */
+
+
+.movement-summary {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+
+    gap:15px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+.movement-summary-item {
+
+
+    padding:18px;
+
+
+    text-align:center;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+}
+
+
+
+
+
+.movement-summary-item span {
+
+
+    display:block;
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+
+
+.movement-summary-item strong {
+
+
+    font-size:22px;
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 6/10
+   MODALES
+========================================================= */
+
+
+
+/* ===========================
+   MODAL OVERLAY
+=========================== */
+
+
+.modal {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+    background:
+
+    rgba(0,0,0,.55);
+
+
+    backdrop-filter:
+
+    blur(8px);
+
+
+    z-index:1000;
+
+
+    animation:
+
+    fadeModal .25s ease;
+
+
+}
+
+
+
+
+
+.modal.hidden {
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL CONTENT
+=========================== */
+
+
+.modal-content {
+
+
+    width:100%;
+
+
+    max-width:550px;
+
+
+    max-height:90vh;
+
+
+    overflow-y:auto;
+
+
+    padding:30px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+    animation:
+
+    slideModal .3s ease;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL HEADER
+=========================== */
+
+
+.modal-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+.modal-header h2 {
+
+
+    font-size:24px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CLOSE BUTTON
+=========================== */
+
+
+.icon-button {
+
+
+    width:40px;
+
+
+    height:40px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.icon-button:hover {
+
+
+    background:
+
+    rgba(255,255,255,.2);
+
+
+    transform:rotate(90deg);
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL BODY
+=========================== */
+
+
+.modal-body {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TYPE SELECTOR
+=========================== */
+
+
+.type-selector {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+    gap:12px;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.type-button {
+
+
+    padding:15px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    font-weight:600;
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.type-button:hover {
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+
+
+.type-button.active {
+
+
+    background:
+
+    var(--primary-color);
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL ACTIONS
+=========================== */
+
+
+.modal-actions {
+
+
+    display:flex;
+
+
+    justify-content:flex-end;
+
+
+    gap:15px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+.primary-button,
+
+.secondary-button,
+
+.danger-button {
+
+
+    padding:
+
+    13px 22px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    font-weight:600;
+
+
+    font-size:14px;
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.primary-button {
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    var(--primary-color),
+
+    var(--primary-light)
+
+    );
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+.primary-button:hover {
+
+
+    transform:translateY(-2px);
+
+
+}
+
+
+
+
+
+.secondary-button {
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+}
+
+
+
+
+
+.secondary-button:hover {
+
+
+    background:
+
+    rgba(255,255,255,.18);
+
+
+}
+
+
+
+
+
+.danger-button {
+
+
+    background:
+
+    rgba(239,68,68,.2);
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+.danger-button:hover {
+
+
+    background:
+
+    rgba(239,68,68,.35);
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY SELECTOR
+=========================== */
+
+
+.category-selector {
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:10px;
+
+
+}
+
+
+
+
+
+.category-option {
+
+
+    padding:
+
+    10px 15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    cursor:pointer;
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.category-option:hover {
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+
+
+.category-option.active {
+
+
+    background:
+
+    var(--primary-color);
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT SELECTOR
+=========================== */
+
+
+.account-selector {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+.account-option {
+
+
+    padding:15px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    cursor:pointer;
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.account-option:hover {
+
+
+    background:
+
+    rgba(255,255,255,.15);
+
+
+}
+
+
+
+
+
+.account-option.active {
+
+
+    border-color:
+
+    var(--primary-color);
+
+
+    background:
+
+    rgba(108,99,255,.2);
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL ANIMATIONS
+=========================== */
+
+
+@keyframes fadeModal {
+
+
+    from {
+
+
+        opacity:0;
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes slideModal {
+
+
+    from {
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateY(30px) scale(.95);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0) scale(1);
+
+
+    }
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 7/10
+   FORMULARIOS
+========================================================= */
+
+
+
+/* ===========================
+   FORM STRUCTURE
+=========================== */
+
+
+form {
+
+
+    width:100%;
+
+
+}
+
+
+
+
+
+.input-group {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:8px;
+
+
+    margin-bottom:18px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   LABELS
+=========================== */
+
+
+.input-group label {
+
+
+    font-size:14px;
+
+
+    font-weight:600;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+}
+
+
+
+
+
+/* ===========================
+   INPUT BASE
+=========================== */
+
+
+.input-group input,
+
+.input-group select,
+
+.input-group textarea {
+
+
+    width:100%;
+
+
+    padding:
+
+    14px 16px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    color:
+
+    var(--text-primary);
+
+
+    font-size:14px;
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.input-group input::placeholder,
+
+.input-group textarea::placeholder {
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.input-group input:focus,
+
+.input-group select:focus,
+
+.input-group textarea:focus {
+
+
+    border-color:
+
+    var(--primary-color);
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+
+    box-shadow:
+
+    0 0 0 3px rgba(108,99,255,.15);
+
+
+}
+
+
+
+
+
+/* ===========================
+   SELECT
+=========================== */
+
+
+.input-group select {
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+.input-group select option {
+
+
+    background:
+
+    var(--background-secondary);
+
+
+    color:
+
+    var(--text-primary);
+
+
+}
+
+
+
+
+
+/* ===========================
+   TEXTAREA
+=========================== */
+
+
+.input-group textarea {
+
+
+    resize:none;
+
+
+    min-height:100px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DOUBLE GRID INPUTS
+=========================== */
+
+
+.double-grid {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   NUMBER INPUT
+=========================== */
+
+
+input[type="number"] {
+
+
+    appearance:textfield;
+
+
+}
+
+
+
+
+
+input[type="number"]::-webkit-inner-spin-button,
+
+input[type="number"]::-webkit-outer-spin-button {
+
+
+    appearance:none;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DATE AND TIME
+=========================== */
+
+
+input[type="date"],
+
+input[type="time"] {
+
+
+    color-scheme:dark;
+
+
+}
+
+
+
+
+
+/* ===========================
+   FILE INPUT
+=========================== */
+
+
+input[type="file"] {
+
+
+    padding:12px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+input[type="file"]::file-selector-button {
+
+
+    padding:
+
+    8px 14px;
+
+
+    margin-right:10px;
+
+
+    border:none;
+
+
+    border-radius:15px;
+
+
+    background:
+
+    var(--primary-color);
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CHECKBOX
+=========================== */
+
+
+.checkbox-group {
+
+
+    flex-direction:row;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.checkbox-group label {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+.checkbox-group input {
+
+
+    width:18px;
+
+
+    height:18px;
+
+
+    accent-color:
+
+    var(--primary-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   BUDGET PREVIEW
+=========================== */
+
+
+.budget-preview {
+
+
+    padding:18px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+}
+
+
+
+.budget-preview strong {
+
+
+    font-size:14px;
+
+
+}
+
+
+
+.budget-preview span {
+
+
+    display:block;
+
+
+    font-size:24px;
+
+
+    font-weight:700;
+
+
+    margin:10px 0;
+
+
+}
+
+
+
+
+
+/* ===========================
+   PASSWORD / SPECIAL FIELDS
+=========================== */
+
+
+.input-wrapper {
+
+
+    position:relative;
+
+
+}
+
+
+
+.input-wrapper input {
+
+
+    padding-right:45px;
+
+
+}
+
+
+
+
+
+.input-wrapper .toggle-icon {
+
+
+    position:absolute;
+
+
+    right:15px;
+
+
+    top:50%;
+
+
+    transform:translateY(-50%);
+
+
+    cursor:pointer;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+/* ===========================
+   VALIDATION STATES
+=========================== */
+
+
+.input-valid {
+
+
+    border-color:
+
+    var(--success-color) !important;
+
+
+}
+
+
+
+
+
+.input-invalid {
+
+
+    border-color:
+
+    var(--danger-color) !important;
+
+
+}
+
+
+
+
+
+.error-message {
+
+
+    color:
+
+    var(--danger-color);
+
+
+    font-size:12px;
+
+
+    margin-top:4px;
+
+
+}
+
+
+
+
+
+.success-message {
+
+
+    color:
+
+    var(--success-color);
+
+
+    font-size:12px;
+
+
+    margin-top:4px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TAG INPUT
+=========================== */
+
+
+.tags-container {
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:8px;
+
+
+    padding:10px;
+
+
+    min-height:45px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+}
+
+
+
+
+
+.tag-remove {
+
+
+    margin-left:6px;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+/* ===========================
+   FORM DIVIDER
+=========================== */
+
+
+.form-divider {
+
+
+    margin:
+
+    25px 0;
+
+
+    height:1px;
+
+
+    background:
+
+    rgba(255,255,255,.1);
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 8/10
+   ESTADÍSTICAS Y GRÁFICOS
+========================================================= */
+
+
+
+/* ===========================
+   STATISTICS CONTAINER
+=========================== */
+
+
+.statistics-container {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:25px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   KPI GRID
+=========================== */
+
+
+.kpi-grid {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   KPI CARD
+=========================== */
+
+
+.kpi-card {
+
+
+    padding:22px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+.kpi-card:hover {
+
+
+    transform:
+
+    translateY(-5px);
+
+
+}
+
+
+
+
+
+.kpi-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+}
+
+
+
+
+
+.kpi-title {
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+}
+
+
+
+
+
+.kpi-icon {
+
+
+    width:42px;
+
+
+    height:42px;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    border-radius:14px;
+
+
+}
+
+
+
+
+
+.kpi-value {
+
+
+    font-size:28px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+
+
+.kpi-change {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:6px;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+.kpi-change.up {
+
+
+    color:
+
+    var(--success-color);
+
+
+}
+
+
+
+
+
+.kpi-change.down {
+
+
+    color:
+
+    var(--danger-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   CHARTS GRID
+=========================== */
+
+
+.charts-grid {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CHART CARD
+=========================== */
+
+
+.chart-card {
+
+
+    padding:25px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+    min-height:350px;
+
+
+}
+
+
+
+
+
+.chart-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.chart-title {
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+.chart-description {
+
+
+    font-size:13px;
+
+
+    color:
+
+    var(--text-muted);
+
+
+}
+
+
+
+
+
+.chart-wrapper {
+
+
+    position:relative;
+
+
+    width:100%;
+
+
+    height:280px;
+
+
+}
+
+
+
+
+
+.chart-wrapper canvas {
+
+
+    width:100% !important;
+
+
+    height:100% !important;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY ANALYSIS
+=========================== */
+
+
+.category-analysis {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+.category-stat {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:15px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+}
+
+
+
+
+
+.category-stat-left {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+}
+
+
+
+
+
+.category-dot {
+
+
+    width:12px;
+
+
+    height:12px;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    var(--primary-color);
+
+
+}
+
+
+
+
+
+.category-stat-name {
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+.category-stat-value {
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* ===========================
+   FINANCIAL HEALTH
+=========================== */
+
+
+.financial-health {
+
+
+    padding:25px;
+
+
+    border-radius:
+
+    var(--border-radius-lg);
+
+
+}
+
+
+
+
+
+.health-header {
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.health-title {
+
+
+    font-size:18px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+.health-score {
+
+
+    font-size:32px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+
+
+.health-indicator {
+
+
+    height:12px;
+
+
+    width:100%;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+
+.health-progress {
+
+
+    height:100%;
+
+
+    width:0%;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    var(--danger-color),
+
+    var(--warning-color),
+
+    var(--success-color)
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   PERIOD SELECTOR
+=========================== */
+
+
+.period-selector {
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+}
+
+
+
+
+
+.period-button {
+
+
+    padding:
+
+    8px 16px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    font-size:13px;
+
+
+    transition:
+
+    var(--transition-fast);
+
+
+}
+
+
+
+
+
+.period-button.active {
+
+
+    background:
+
+    var(--primary-color);
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+/* ===========================
+   INSIGHT BOX
+=========================== */
+
+
+.insight-box {
+
+
+    display:flex;
+
+
+    align-items:flex-start;
+
+
+    gap:15px;
+
+
+    padding:20px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    background:
+
+    rgba(108,99,255,.12);
+
+
+}
+
+
+
+
+
+.insight-box i {
+
+
+    font-size:22px;
+
+
+    color:
+
+    var(--primary-light);
+
+
+}
+
+
+
+
+
+.insight-text {
+
+
+    font-size:14px;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+    line-height:1.5;
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 9/10
+   RESPONSIVE DESIGN
+========================================================= */
+
+
+
+/* ===========================
+   TABLETS
+   1024px
+=========================== */
+
+
+@media (max-width:1024px){
+
+
+
+    .app-container {
+
+
+        padding:15px;
+
+
+    }
+
+
+
+    .grid-4 {
+
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+
+
+    }
+
+
+
+    .financial-overview {
+
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+
+
+    }
+
+
+
+    .summary-grid {
+
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+
+
+    }
+
+
+
+    .kpi-grid {
+
+
+        grid-template-columns:
+
+        repeat(2,1fr);
+
+
+    }
+
+
+
+    .charts-grid {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+    .chart-card {
+
+
+        min-height:320px;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   TABLETS PEQUEÑAS
+   768px
+=========================== */
+
+
+@media (max-width:768px){
+
+
+
+    body {
+
+
+        padding-bottom:80px;
+
+
+    }
+
+
+
+
+    .app-header {
+
+
+        flex-direction:column;
+
+
+        align-items:flex-start;
+
+
+        gap:20px;
+
+
+    }
+
+
+
+    .header-right {
+
+
+        width:100%;
+
+
+        justify-content:space-between;
+
+
+    }
+
+
+
+
+    .dashboard-actions {
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+
+    .action-button {
+
+
+        width:100%;
+
+
+    }
+
+
+
+
+    .financial-overview {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .grid-3,
+
+
+    .grid-2 {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .movement-summary {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .transactions-header {
+
+
+        flex-direction:column;
+
+
+        align-items:stretch;
+
+
+    }
+
+
+
+
+    .search-container {
+
+
+        max-width:none;
+
+
+    }
+
+
+
+
+    .modal-content {
+
+
+        max-width:100%;
+
+
+        padding:22px;
+
+
+    }
+
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   MÓVILES
+   480px
+=========================== */
+
+
+@media (max-width:480px){
+
+
+
+    .app-container {
+
+
+        padding:10px;
+
+
+    }
+
+
+
+    .brand-title {
+
+
+        font-size:19px;
+
+
+    }
+
+
+
+
+    .balance-container {
+
+
+        padding:22px;
+
+
+    }
+
+
+
+
+    .balance-value {
+
+
+        font-size:34px;
+
+
+    }
+
+
+
+
+    .section-header h2 {
+
+
+        font-size:20px;
+
+
+    }
+
+
+
+
+    .financial-card {
+
+
+        padding:18px;
+
+
+    }
+
+
+
+
+    .card-value {
+
+
+        font-size:24px;
+
+
+    }
+
+
+
+
+    .transaction-item {
+
+
+        padding:14px;
+
+
+    }
+
+
+
+
+    .transaction-left {
+
+
+        gap:10px;
+
+
+    }
+
+
+
+
+    .transaction-icon {
+
+
+        width:42px;
+
+
+        height:42px;
+
+
+        font-size:16px;
+
+
+    }
+
+
+
+
+    .transaction-value {
+
+
+        font-size:15px;
+
+
+    }
+
+
+
+
+    .type-selector {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .account-selector {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .double-grid {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .modal-actions {
+
+
+        flex-direction:column-reverse;
+
+
+    }
+
+
+
+
+    .modal-actions button {
+
+
+        width:100%;
+
+
+    }
+
+
+
+
+    .kpi-grid {
+
+
+        grid-template-columns:
+
+        1fr;
+
+
+    }
+
+
+
+
+    .period-selector {
+
+
+        flex-wrap:wrap;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   NAVIGACIÓN MÓVIL
+=========================== */
+
+
+@media(max-width:768px){
+
+
+
+    .bottom-navigation {
+
+
+        position:fixed;
+
+
+        bottom:15px;
+
+
+        left:15px;
+
+
+        right:15px;
+
+
+        height:65px;
+
+
+        display:flex;
+
+
+        justify-content:space-around;
+
+
+        align-items:center;
+
+
+        border-radius:25px;
+
+
+        z-index:900;
+
+
+    }
+
+
+
+    .nav-item {
+
+
+        display:flex;
+
+
+        flex-direction:column;
+
+
+        align-items:center;
+
+
+        gap:4px;
+
+
+        background:none;
+
+
+        color:
+
+        var(--text-muted);
+
+
+        font-size:11px;
+
+
+    }
+
+
+
+
+    .nav-item i {
+
+
+        font-size:18px;
+
+
+    }
+
+
+
+
+    .nav-item.active {
+
+
+        color:
+
+        var(--primary-light);
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   DESKTOP NAVIGATION
+=========================== */
+
+
+@media(min-width:769px){
+
+
+
+    .bottom-navigation {
+
+
+        display:none;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   TOUCH OPTIMIZATION
+=========================== */
+
+
+@media(pointer:coarse){
+
+
+
+    button,
+
+
+    .category-option,
+
+
+    .account-option {
+
+
+        min-height:44px;
+
+
+    }
+
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   STYLE.CSS
+   PARTE 10/10
+   ANIMACIONES - PWA - AJUSTES FINALES
+========================================================= */
+
+
+
+/* ===========================
+   GLOBAL TRANSITIONS
+=========================== */
+
+
+* {
+
+
+    -webkit-tap-highlight-color:
+
+    transparent;
+
+
+}
+
+
+
+
+
+button,
+
+.card,
+
+.glass,
+
+.nav-item,
+
+.category-option,
+
+.account-option {
+
+
+    transition:
+
+    var(--transition-normal);
+
+
+}
+
+
+
+
+
+/* ===========================
+   LOADING SCREEN
+=========================== */
+
+
+.loading-screen {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    background:
+
+    var(--background-main);
+
+
+    z-index:2000;
+
+
+}
+
+
+
+
+
+.loading-screen.hidden {
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+.loader {
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    align-items:center;
+
+
+    gap:15px;
+
+
+    color:
+
+    var(--text-secondary);
+
+
+}
+
+
+
+
+
+.loader i {
+
+
+    font-size:45px;
+
+
+    color:
+
+    var(--primary-light);
+
+
+    animation:
+
+    pulse 1.5s infinite;
+
+
+}
+
+
+
+
+
+.loader span {
+
+
+    font-size:15px;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TOAST NOTIFICATIONS
+=========================== */
+
+
+#toastContainer {
+
+
+    position:fixed;
+
+
+    top:25px;
+
+
+    right:25px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:12px;
+
+
+    z-index:3000;
+
+
+}
+
+
+
+
+
+.toast {
+
+
+    min-width:280px;
+
+
+    padding:16px 20px;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    animation:
+
+    slideToast .35s ease;
+
+
+}
+
+
+
+
+
+.toast.success {
+
+
+    border-left:
+
+    4px solid var(--success-color);
+
+
+}
+
+
+
+
+
+.toast.error {
+
+
+    border-left:
+
+    4px solid var(--danger-color);
+
+
+}
+
+
+
+
+
+.toast.warning {
+
+
+    border-left:
+
+    4px solid var(--warning-color);
+
+
+}
+
+
+
+
+
+/* ===========================
+   SKELETON LOADING
+=========================== */
+
+
+.skeleton {
+
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    rgba(255,255,255,.05),
+
+    rgba(255,255,255,.15),
+
+    rgba(255,255,255,.05)
+
+    );
+
+
+    background-size:
+
+    200% 100%;
+
+
+    animation:
+
+    skeletonMove 1.5s infinite;
+
+
+    border-radius:
+
+    var(--border-radius-md);
+
+
+}
+
+
+
+
+
+/* ===========================
+   FLOATING ACTION BUTTON
+=========================== */
+
+
+.fab {
+
+
+    position:fixed;
+
+
+    right:25px;
+
+
+    bottom:95px;
+
+
+    width:60px;
+
+
+    height:60px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    var(--primary-color),
+
+    var(--secondary-color)
+
+    );
+
+
+    color:white;
+
+
+    font-size:22px;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.35);
+
+
+    z-index:950;
+
+
+}
+
+
+
+
+
+.fab:hover {
+
+
+    transform:
+
+    scale(1.08);
+
+
+}
+
+
+
+
+
+/* ===========================
+   PAGE TRANSITIONS
+=========================== */
+
+
+.page-enter {
+
+
+    animation:
+
+    pageEnter .35s ease;
+
+
+}
+
+
+
+
+
+.page-exit {
+
+
+    animation:
+
+    pageExit .25s ease;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+
+@keyframes pulse {
+
+
+    0% {
+
+
+        transform:
+
+        scale(1);
+
+
+        opacity:.8;
+
+
+    }
+
+
+    50% {
+
+
+        transform:
+
+        scale(1.15);
+
+
+        opacity:1;
+
+
+    }
+
+
+    100% {
+
+
+        transform:
+
+        scale(1);
+
+
+        opacity:.8;
+
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes slideToast {
+
+
+    from {
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateX(50px);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateX(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes skeletonMove {
+
+
+    from {
+
+
+        background-position:
+
+        200% 0;
+
+
+    }
+
+
+    to {
+
+
+        background-position:
+
+        -200% 0;
+
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes pageEnter {
+
+
+    from {
+
+
+        opacity:0;
+
+
+        transform:
+
+        translateY(15px);
+
+
+    }
+
+
+    to {
+
+
+        opacity:1;
+
+
+        transform:
+
+        translateY(0);
+
+
+    }
+
+
+}
+
+
+
+
+
+@keyframes pageExit {
+
+
+    from {
+
+
+        opacity:1;
+
+
+    }
+
+
+    to {
+
+
+        opacity:0;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCESSIBILITY
+=========================== */
+
+
+@media(prefers-reduced-motion:reduce){
+
+
+    * {
+
+
+        animation-duration:
+
+        .01ms !important;
+
+
+        animation-iteration-count:
+
+        1 !important;
+
+
+        transition-duration:
+
+        .01ms !important;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   PRINT CONTROL
+=========================== */
+
+
+@media print{
+
+
+    body {
+
+
+        background:white;
+
+
+        color:black;
+
+
+    }
+
+
+
+    .bottom-navigation,
+
+    .fab,
+
+    button {
+
+
+        display:none;
+
+
+    }
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 1/12
+   CONFIGURACIÓN - CLASES - ALMACENAMIENTO
+========================================================= */
+
+
+
+"use strict";
+
+
+
+/* ===========================
+   CONFIGURACIÓN GLOBAL
+=========================== */
+
+
+const APP_CONFIG = {
+
+
+    name: "Finanzas",
+
+
+    version: "2.0",
+
+
+    currency: "COP",
+
+
+    locale: "es-CO",
+
+
+    storagePrefix: "finanzas_v2_",
+
+
+};
+
+
+
+
+
+/* ===========================
+   STORAGE KEYS
+=========================== */
+
+
+const STORAGE_KEYS = {
+
+
+    movements:
+
+    APP_CONFIG.storagePrefix + "movements",
+
+
+
+    accounts:
+
+    APP_CONFIG.storagePrefix + "accounts",
+
+
+
+    categories:
+
+    APP_CONFIG.storagePrefix + "categories",
+
+
+
+    budgets:
+
+    APP_CONFIG.storagePrefix + "budgets",
+
+
+
+    goals:
+
+    APP_CONFIG.storagePrefix + "goals",
+
+
+
+    settings:
+
+    APP_CONFIG.storagePrefix + "settings",
+
+
+
+};
+
+
+
+
+
+/* ===========================
+   ESTADO GLOBAL
+=========================== */
+
+
+const state = {
+
+
+    movements: [],
+
+
+    accounts: [],
+
+
+    categories: [],
+
+
+    budgets: [],
+
+
+    goals: [],
+
+
+    settings:{
+
+
+
+        theme:"dark",
+
+
+        currency:"COP",
+
+
+        firstLaunch:true
+
+
+
+    },
+
+
+    currentSection:
+
+    "dashboard",
+
+
+
+    currentMovementType:
+
+    "expense",
+
+
+
+    selectedAccount:null,
+
+
+    selectedCategory:null,
+
+
+};
+
+
+
+
+
+/* ===========================
+   DATA DEFAULT
+=========================== */
+
+
+const DEFAULT_DATA = {
+
+
+
+    categories:[
+
+
+        {
+
+
+            id:"food",
+
+
+            name:"Comida",
+
+
+            icon:"fa-utensils",
+
+
+            color:"#22c55e"
+
+
+
+        },
+
+
+        {
+
+
+            id:"transport",
+
+
+            name:"Transporte",
+
+
+            icon:"fa-car",
+
+
+            color:"#3b82f6"
+
+
+
+        },
+
+
+        {
+
+
+            id:"home",
+
+
+            name:"Hogar",
+
+
+            icon:"fa-house",
+
+
+            color:"#f59e0b"
+
+
+
+        },
+
+
+        {
+
+
+            id:"health",
+
+
+            name:"Salud",
+
+
+            icon:"fa-heart",
+
+
+            color:"#ef4444"
+
+
+
+        },
+
+
+        {
+
+
+            id:"other",
+
+
+            name:"Otros",
+
+
+            icon:"fa-circle",
+
+
+            color:"#8b5cf6"
+
+
+
+        }
+
+
+
+    ],
+
+
+
+
+    accounts:[
+
+
+        {
+
+
+            id:"cash",
+
+
+            name:"Efectivo",
+
+
+            type:"cash",
+
+
+            balance:0
+
+
+
+        },
+
+
+        {
+
+
+            id:"bank",
+
+
+            name:"Bancolombia",
+
+
+            type:"bank",
+
+
+            balance:0
+
+
+
+        },
+
+
+        {
+
+
+            id:"nequi",
+
+
+            name:"Nequi",
+
+
+            type:"digital",
+
+
+            balance:0
+
+
+
+        },
+
+
+        {
+
+
+            id:"daviplata",
+
+
+            name:"Daviplata",
+
+
+            type:"digital",
+
+
+            balance:0
+
+
+
+        }
+
+
+
+    ]
+
+
+
+};
+
+
+
+
+
+/* ===========================
+   LOCAL STORAGE HELPERS
+=========================== */
+
+
+function saveData(key,value){
+
+
+    try{
+
+
+        localStorage.setItem(
+
+            key,
+
+            JSON.stringify(value)
+
+        );
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(
+
+            "Error guardando datos:",
+
+            error
+
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+function loadData(key,defaultValue=[]){
+
+
+    try{
+
+
+        const data =
+
+        localStorage.getItem(key);
+
+
+
+        return data
+
+        ?
+
+        JSON.parse(data)
+
+        :
+
+        defaultValue;
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(
+
+            "Error cargando datos:",
+
+            error
+
+        );
+
+
+        return defaultValue;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   INITIAL DATA LOAD
+=========================== */
+
+
+function loadApplicationData(){
+
+
+
+    state.movements =
+
+    loadData(
+
+        STORAGE_KEYS.movements,
+
+        []
+
+    );
+
+
+
+    state.accounts =
+
+    loadData(
+
+        STORAGE_KEYS.accounts,
+
+        DEFAULT_DATA.accounts
+
+    );
+
+
+
+    state.categories =
+
+    loadData(
+
+        STORAGE_KEYS.categories,
+
+        DEFAULT_DATA.categories
+
+    );
+
+
+
+    state.budgets =
+
+    loadData(
+
+        STORAGE_KEYS.budgets,
+
+        []
+
+    );
+
+
+
+    state.goals =
+
+    loadData(
+
+        STORAGE_KEYS.goals,
+
+        []
+
+    );
+
+
+
+    state.settings =
+
+    loadData(
+
+        STORAGE_KEYS.settings,
+
+        state.settings
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   SAVE ALL DATA
+=========================== */
+
+
+function saveAllData(){
+
+
+
+    saveData(
+
+        STORAGE_KEYS.movements,
+
+        state.movements
+
+    );
+
+
+
+    saveData(
+
+        STORAGE_KEYS.accounts,
+
+        state.accounts
+
+    );
+
+
+
+    saveData(
+
+        STORAGE_KEYS.categories,
+
+        state.categories
+
+    );
+
+
+
+    saveData(
+
+        STORAGE_KEYS.budgets,
+
+        state.budgets
+
+    );
+
+
+
+    saveData(
+
+        STORAGE_KEYS.goals,
+
+        state.goals
+
+    );
+
+
+
+    saveData(
+
+        STORAGE_KEYS.settings,
+
+        state.settings
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   UTILIDADES GENERALES
+=========================== */
+
+
+function generateID(prefix="id"){
+
+
+
+    return (
+
+        prefix +
+
+        "_" +
+
+        Date.now() +
+
+        "_" +
+
+        Math.floor(
+
+            Math.random()*1000
+
+        )
+
+    );
+
+
+}
+
+
+
+
+
+function formatCurrency(value){
+
+
+
+    return new Intl.NumberFormat(
+
+        APP_CONFIG.locale,
+
+        {
+
+            style:"currency",
+
+            currency:APP_CONFIG.currency,
+
+            maximumFractionDigits:0
+
+        }
+
+    ).format(value);
+
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 2/12
+   DASHBOARD
+========================================================= */
+
+
+
+/* ===========================
+   DASHBOARD CALCULATIONS
+=========================== */
+
+
+function calculateTotalBalance(){
+
+
+    return state.accounts.reduce(
+
+        (total, account) =>
+
+        total + Number(account.balance || 0),
+
+        0
+
+    );
+
+
+}
+
+
+
+
+
+function calculateTotalIncome(){
+
+
+    return state.movements
+
+        .filter(
+
+            movement =>
+
+            movement.type === "income"
+
+        )
+
+        .reduce(
+
+            (total,movement)=>
+
+            total + Number(movement.amount),
+
+            0
+
+        );
+
+
+}
+
+
+
+
+
+function calculateTotalExpenses(){
+
+
+    return state.movements
+
+        .filter(
+
+            movement =>
+
+            movement.type === "expense"
+
+        )
+
+        .reduce(
+
+            (total,movement)=>
+
+            total + Number(movement.amount),
+
+            0
+
+        );
+
+
+}
+
+
+
+
+
+function calculateMonthlySummary(){
+
+
+
+    const currentDate = new Date();
+
+
+
+    const currentMonth =
+
+    currentDate.getMonth();
+
+
+
+    const currentYear =
+
+    currentDate.getFullYear();
+
+
+
+
+    const monthlyMovements =
+
+    state.movements.filter(
+
+        movement => {
+
+
+            const date =
+
+            new Date(movement.date);
+
+
+
+            return (
+
+                date.getMonth() === currentMonth &&
+
+                date.getFullYear() === currentYear
+
+            );
+
+
+        }
+
+    );
+
+
+
+
+    return {
+
+
+        income:
+
+        monthlyMovements
+
+        .filter(
+
+            item =>
+
+            item.type === "income"
+
+        )
+
+        .reduce(
+
+            (sum,item)=>
+
+            sum + Number(item.amount),
+
+            0
+
+        ),
+
+
+
+        expenses:
+
+        monthlyMovements
+
+        .filter(
+
+            item =>
+
+            item.type === "expense"
+
+        )
+
+        .reduce(
+
+            (sum,item)=>
+
+            sum + Number(item.amount),
+
+            0
+
+        )
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   DASHBOARD ELEMENT UPDATE
+=========================== */
+
+
+function updateDashboard(){
+
+
+
+    const balance =
+
+    calculateTotalBalance();
+
+
+
+    const income =
+
+    calculateTotalIncome();
+
+
+
+    const expenses =
+
+    calculateTotalExpenses();
+
+
+
+    const monthly =
+
+    calculateMonthlySummary();
+
+
+
+
+
+    const balanceElement =
+
+    document.getElementById(
+
+        "totalBalance"
+
+    );
+
+
+
+    const incomeElement =
+
+    document.getElementById(
+
+        "totalIncome"
+
+    );
+
+
+
+    const expenseElement =
+
+    document.getElementById(
+
+        "totalExpenses"
+
+    );
+
+
+
+    const monthlyIncomeElement =
+
+    document.getElementById(
+
+        "monthlyIncome"
+
+    );
+
+
+
+    const monthlyExpenseElement =
+
+    document.getElementById(
+
+        "monthlyExpenses"
+
+    );
+
+
+
+
+
+    if(balanceElement)
+
+        balanceElement.textContent =
+
+        formatCurrency(balance);
+
+
+
+
+
+    if(incomeElement)
+
+        incomeElement.textContent =
+
+        formatCurrency(income);
+
+
+
+
+
+    if(expenseElement)
+
+        expenseElement.textContent =
+
+        formatCurrency(expenses);
+
+
+
+
+
+    if(monthlyIncomeElement)
+
+        monthlyIncomeElement.textContent =
+
+        formatCurrency(monthly.income);
+
+
+
+
+
+    if(monthlyExpenseElement)
+
+        monthlyExpenseElement.textContent =
+
+        formatCurrency(monthly.expenses);
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   DASHBOARD SUMMARY OBJECT
+=========================== */
+
+
+function getDashboardSummary(){
+
+
+    return {
+
+
+        balance:
+
+        calculateTotalBalance(),
+
+
+
+        income:
+
+        calculateTotalIncome(),
+
+
+
+        expenses:
+
+        calculateTotalExpenses(),
+
+
+
+        monthly:
+
+        calculateMonthlySummary()
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   BALANCE STATUS
+=========================== */
+
+
+function getBalanceStatus(){
+
+
+
+    const balance =
+
+    calculateTotalBalance();
+
+
+
+    if(balance > 0)
+
+        return "positive";
+
+
+
+    if(balance < 0)
+
+        return "negative";
+
+
+
+    return "neutral";
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 3/12
+   CRUD DE MOVIMIENTOS
+========================================================= */
+
+
+
+/* ===========================
+   CREATE MOVEMENT
+=========================== */
+
+
+function createMovement(data){
+
+
+    const movement = {
+
+
+        id:
+
+        generateID("movement"),
+
+
+
+        type:
+
+        data.type || "expense",
+
+
+
+        amount:
+
+        Number(data.amount || 0),
+
+
+
+        accountId:
+
+        data.accountId || null,
+
+
+
+        categoryId:
+
+        data.categoryId || null,
+
+
+
+        description:
+
+        data.description || "",
+
+
+
+        date:
+
+        data.date ||
+
+        new Date().toISOString(),
+
+
+
+        time:
+
+        data.time || "",
+
+
+
+        notes:
+
+        data.notes || "",
+
+
+
+        tags:
+
+        data.tags || [],
+
+
+
+        receipt:
+
+        data.receipt || null
+
+
+
+    };
+
+
+
+
+    state.movements.push(movement);
+
+
+
+    updateAccountBalance(
+
+        movement.accountId,
+
+        movement.amount,
+
+        movement.type
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return movement;
+
+
+}
+
+
+
+
+
+/* ===========================
+   READ MOVEMENTS
+=========================== */
+
+
+function getMovements(){
+
+
+    return state.movements;
+
+
+}
+
+
+
+
+
+function getRecentMovements(limit=5){
+
+
+
+    return [
+
+        ...state.movements
+
+    ]
+
+    .sort(
+
+        (a,b)=>
+
+        new Date(b.date)
+
+        -
+
+        new Date(a.date)
+
+    )
+
+    .slice(0,limit);
+
+
+
+}
+
+
+
+
+
+function getMovementById(id){
+
+
+
+    return state.movements.find(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE MOVEMENT
+=========================== */
+
+
+function updateMovement(id,newData){
+
+
+
+    const index =
+
+    state.movements.findIndex(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    const oldMovement =
+
+    state.movements[index];
+
+
+
+
+
+    reverseAccountBalance(
+
+        oldMovement
+
+    );
+
+
+
+
+    const updatedMovement = {
+
+
+        ...oldMovement,
+
+
+        ...newData,
+
+
+        amount:
+
+        Number(
+
+            newData.amount ??
+
+            oldMovement.amount
+
+        )
+
+
+    };
+
+
+
+    state.movements[index] =
+
+    updatedMovement;
+
+
+
+
+    updateAccountBalance(
+
+        updatedMovement.accountId,
+
+        updatedMovement.amount,
+
+        updatedMovement.type
+
+    );
+
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DELETE MOVEMENT
+=========================== */
+
+
+function deleteMovement(id){
+
+
+
+    const index =
+
+    state.movements.findIndex(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    const movement =
+
+    state.movements[index];
+
+
+
+
+    reverseAccountBalance(
+
+        movement
+
+    );
+
+
+
+
+    state.movements.splice(
+
+        index,
+
+        1
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT BALANCE CONTROL
+=========================== */
+
+
+function updateAccountBalance(
+
+    accountId,
+
+    amount,
+
+    type
+
+){
+
+
+
+    const account =
+
+    state.accounts.find(
+
+        item =>
+
+        item.id === accountId
+
+    );
+
+
+
+    if(!account)
+
+        return;
+
+
+
+
+    if(type === "income"){
+
+
+        account.balance += amount;
+
+
+    }
+
+
+    else{
+
+
+        account.balance -= amount;
+
+
+    }
+
+
+}
+
+
+
+
+
+function reverseAccountBalance(
+
+    movement
+
+){
+
+
+
+    const account =
+
+    state.accounts.find(
+
+        item =>
+
+        item.id === movement.accountId
+
+    );
+
+
+
+    if(!account)
+
+        return;
+
+
+
+
+    if(movement.type === "income"){
+
+
+        account.balance -=
+
+        movement.amount;
+
+
+    }
+
+
+    else{
+
+
+        account.balance +=
+
+        movement.amount;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   FILTER MOVEMENTS
+=========================== */
+
+
+function filterMovements(filters={}){
+
+
+
+    return state.movements.filter(
+
+        movement => {
+
+
+
+            if(
+
+                filters.type &&
+
+                movement.type !== filters.type
+
+            )
+
+                return false;
+
+
+
+
+            if(
+
+                filters.categoryId &&
+
+                movement.categoryId !== filters.categoryId
+
+            )
+
+                return false;
+
+
+
+
+            if(
+
+                filters.accountId &&
+
+                movement.accountId !== filters.accountId
+
+            )
+
+                return false;
+
+
+
+
+            if(filters.search){
+
+
+
+                const text =
+
+                (
+
+                    movement.description +
+
+                    " " +
+
+                    movement.notes
+
+                )
+
+                .toLowerCase();
+
+
+
+                if(
+
+                    !text.includes(
+
+                        filters.search.toLowerCase()
+
+                    )
+
+                )
+
+                    return false;
+
+
+            }
+
+
+
+
+            return true;
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   MOVEMENT HELPERS
+=========================== */
+
+
+function getMovementCount(){
+
+
+    return state.movements.length;
+
+
+}
+
+
+
+
+
+function clearMovements(){
+
+
+
+    state.movements = [];
+
+
+
+    saveAllData();
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 3/12
+   CRUD DE MOVIMIENTOS
+========================================================= */
+
+
+
+/* ===========================
+   CREATE MOVEMENT
+=========================== */
+
+
+function createMovement(data){
+
+
+    const movement = {
+
+
+        id:
+
+        generateID("movement"),
+
+
+
+        type:
+
+        data.type || "expense",
+
+
+
+        amount:
+
+        Number(data.amount || 0),
+
+
+
+        accountId:
+
+        data.accountId || null,
+
+
+
+        categoryId:
+
+        data.categoryId || null,
+
+
+
+        description:
+
+        data.description || "",
+
+
+
+        date:
+
+        data.date ||
+
+        new Date().toISOString(),
+
+
+
+        time:
+
+        data.time || "",
+
+
+
+        notes:
+
+        data.notes || "",
+
+
+
+        tags:
+
+        data.tags || [],
+
+
+
+        receipt:
+
+        data.receipt || null
+
+
+
+    };
+
+
+
+
+    state.movements.push(movement);
+
+
+
+    updateAccountBalance(
+
+        movement.accountId,
+
+        movement.amount,
+
+        movement.type
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return movement;
+
+
+}
+
+
+
+
+
+/* ===========================
+   READ MOVEMENTS
+=========================== */
+
+
+function getMovements(){
+
+
+    return state.movements;
+
+
+}
+
+
+
+
+
+function getRecentMovements(limit=5){
+
+
+
+    return [
+
+        ...state.movements
+
+    ]
+
+    .sort(
+
+        (a,b)=>
+
+        new Date(b.date)
+
+        -
+
+        new Date(a.date)
+
+    )
+
+    .slice(0,limit);
+
+
+
+}
+
+
+
+
+
+function getMovementById(id){
+
+
+
+    return state.movements.find(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE MOVEMENT
+=========================== */
+
+
+function updateMovement(id,newData){
+
+
+
+    const index =
+
+    state.movements.findIndex(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    const oldMovement =
+
+    state.movements[index];
+
+
+
+
+
+    reverseAccountBalance(
+
+        oldMovement
+
+    );
+
+
+
+
+    const updatedMovement = {
+
+
+        ...oldMovement,
+
+
+        ...newData,
+
+
+        amount:
+
+        Number(
+
+            newData.amount ??
+
+            oldMovement.amount
+
+        )
+
+
+    };
+
+
+
+    state.movements[index] =
+
+    updatedMovement;
+
+
+
+
+    updateAccountBalance(
+
+        updatedMovement.accountId,
+
+        updatedMovement.amount,
+
+        updatedMovement.type
+
+    );
+
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DELETE MOVEMENT
+=========================== */
+
+
+function deleteMovement(id){
+
+
+
+    const index =
+
+    state.movements.findIndex(
+
+        movement =>
+
+        movement.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    const movement =
+
+    state.movements[index];
+
+
+
+
+    reverseAccountBalance(
+
+        movement
+
+    );
+
+
+
+
+    state.movements.splice(
+
+        index,
+
+        1
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT BALANCE CONTROL
+=========================== */
+
+
+function updateAccountBalance(
+
+    accountId,
+
+    amount,
+
+    type
+
+){
+
+
+
+    const account =
+
+    state.accounts.find(
+
+        item =>
+
+        item.id === accountId
+
+    );
+
+
+
+    if(!account)
+
+        return;
+
+
+
+
+    if(type === "income"){
+
+
+        account.balance += amount;
+
+
+    }
+
+
+    else{
+
+
+        account.balance -= amount;
+
+
+    }
+
+
+}
+
+
+
+
+
+function reverseAccountBalance(
+
+    movement
+
+){
+
+
+
+    const account =
+
+    state.accounts.find(
+
+        item =>
+
+        item.id === movement.accountId
+
+    );
+
+
+
+    if(!account)
+
+        return;
+
+
+
+
+    if(movement.type === "income"){
+
+
+        account.balance -=
+
+        movement.amount;
+
+
+    }
+
+
+    else{
+
+
+        account.balance +=
+
+        movement.amount;
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   FILTER MOVEMENTS
+=========================== */
+
+
+function filterMovements(filters={}){
+
+
+
+    return state.movements.filter(
+
+        movement => {
+
+
+
+            if(
+
+                filters.type &&
+
+                movement.type !== filters.type
+
+            )
+
+                return false;
+
+
+
+
+            if(
+
+                filters.categoryId &&
+
+                movement.categoryId !== filters.categoryId
+
+            )
+
+                return false;
+
+
+
+
+            if(
+
+                filters.accountId &&
+
+                movement.accountId !== filters.accountId
+
+            )
+
+                return false;
+
+
+
+
+            if(filters.search){
+
+
+
+                const text =
+
+                (
+
+                    movement.description +
+
+                    " " +
+
+                    movement.notes
+
+                )
+
+                .toLowerCase();
+
+
+
+                if(
+
+                    !text.includes(
+
+                        filters.search.toLowerCase()
+
+                    )
+
+                )
+
+                    return false;
+
+
+            }
+
+
+
+
+            return true;
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   MOVEMENT HELPERS
+=========================== */
+
+
+function getMovementCount(){
+
+
+    return state.movements.length;
+
+
+}
+
+
+
+
+
+function clearMovements(){
+
+
+
+    state.movements = [];
+
+
+
+    saveAllData();
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 4/12
+   CATEGORÍAS
+========================================================= */
+
+
+
+/* ===========================
+   CREATE CATEGORY
+=========================== */
+
+
+function createCategory(data){
+
+
+    const category = {
+
+
+        id:
+
+        generateID("category"),
+
+
+
+        name:
+
+        data.name || "Nueva categoría",
+
+
+
+        icon:
+
+        data.icon || "fa-tag",
+
+
+
+        color:
+
+        data.color || "#8b5cf6"
+
+
+
+    };
+
+
+
+
+    state.categories.push(category);
+
+
+
+    saveAllData();
+
+
+
+    return category;
+
+
+}
+
+
+
+
+
+/* ===========================
+   READ CATEGORIES
+=========================== */
+
+
+function getCategories(){
+
+
+
+    return state.categories;
+
+
+}
+
+
+
+
+
+function getCategoryById(id){
+
+
+
+    return state.categories.find(
+
+        category =>
+
+        category.id === id
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE CATEGORY
+=========================== */
+
+
+function updateCategory(id,newData){
+
+
+
+    const category =
+
+    getCategoryById(id);
+
+
+
+    if(!category)
+
+        return false;
+
+
+
+
+    Object.assign(
+
+        category,
+
+        newData
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DELETE CATEGORY
+=========================== */
+
+
+function deleteCategory(id){
+
+
+
+    const index =
+
+    state.categories.findIndex(
+
+        category =>
+
+        category.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    state.categories.splice(
+
+        index,
+
+        1
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY USAGE
+=========================== */
+
+
+function getCategoryMovements(categoryId){
+
+
+
+    return state.movements.filter(
+
+        movement =>
+
+        movement.categoryId === categoryId
+
+    );
+
+
+}
+
+
+
+
+
+function getCategoryExpenseTotal(categoryId){
+
+
+
+    return getCategoryMovements(
+
+        categoryId
+
+    )
+
+    .filter(
+
+        movement =>
+
+        movement.type === "expense"
+
+    )
+
+    .reduce(
+
+        (total,movement)=>
+
+        total + movement.amount,
+
+        0
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY SELECTOR RENDER
+=========================== */
+
+
+function renderCategorySelector(
+
+    containerId
+
+){
+
+
+
+    const container =
+
+    document.getElementById(
+
+        containerId
+
+    );
+
+
+
+    if(!container)
+
+        return;
+
+
+
+
+    container.innerHTML = "";
+
+
+
+
+    state.categories.forEach(
+
+        category => {
+
+
+
+            const button =
+
+            document.createElement(
+
+                "button"
+
+            );
+
+
+
+            button.className =
+
+            "category-option";
+
+
+
+
+            button.dataset.id =
+
+            category.id;
+
+
+
+
+            button.innerHTML = `
+
+                <i class="fa-solid ${category.icon}"></i>
+
+                ${category.name}
+
+            `;
+
+
+
+            button.addEventListener(
+
+                "click",
+
+                ()=>{
+
+
+                    selectCategory(
+
+                        category.id
+
+                    );
+
+
+                }
+
+            );
+
+
+
+            container.appendChild(
+
+                button
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   SELECT CATEGORY
+=========================== */
+
+
+function selectCategory(id){
+
+
+
+    state.selectedCategory = id;
+
+
+
+    document
+
+    .querySelectorAll(
+
+        ".category-option"
+
+    )
+
+    .forEach(
+
+        button => {
+
+
+
+            button.classList.toggle(
+
+                "active",
+
+                button.dataset.id === id
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY STATISTICS
+=========================== */
+
+
+function getCategorySummary(){
+
+
+
+    return state.categories.map(
+
+        category => ({
+
+
+
+            id:
+
+            category.id,
+
+
+
+            name:
+
+            category.name,
+
+
+
+            total:
+
+            getCategoryExpenseTotal(
+
+                category.id
+
+            ),
+
+
+
+            icon:
+
+            category.icon,
+
+
+
+            color:
+
+            category.color
+
+
+
+        })
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   DEFAULT CATEGORY RESTORE
+=========================== */
+
+
+function restoreDefaultCategories(){
+
+
+
+    state.categories =
+
+    DEFAULT_DATA.categories;
+
+
+
+    saveAllData();
+
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 5/12
+   CUENTAS
+========================================================= */
+
+
+
+/* ===========================
+   CREATE ACCOUNT
+=========================== */
+
+
+function createAccount(data){
+
+
+    const account = {
+
+
+        id:
+
+        generateID("account"),
+
+
+
+        name:
+
+        data.name || "Nueva cuenta",
+
+
+
+        type:
+
+        data.type || "other",
+
+
+
+        balance:
+
+        Number(data.balance || 0),
+
+
+
+        icon:
+
+        data.icon || "fa-wallet"
+
+
+
+    };
+
+
+
+
+    state.accounts.push(account);
+
+
+
+    saveAllData();
+
+
+
+    return account;
+
+
+}
+
+
+
+
+
+/* ===========================
+   READ ACCOUNTS
+=========================== */
+
+
+function getAccounts(){
+
+
+
+    return state.accounts;
+
+
+}
+
+
+
+
+
+function getAccountById(id){
+
+
+
+    return state.accounts.find(
+
+        account =>
+
+        account.id === id
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE ACCOUNT
+=========================== */
+
+
+function updateAccount(id,newData){
+
+
+
+    const account =
+
+    getAccountById(id);
+
+
+
+    if(!account)
+
+        return false;
+
+
+
+
+    Object.assign(
+
+        account,
+
+        newData
+
+    );
+
+
+
+    if(newData.balance !== undefined){
+
+
+        account.balance =
+
+        Number(newData.balance);
+
+
+    }
+
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DELETE ACCOUNT
+=========================== */
+
+
+function deleteAccount(id){
+
+
+
+    const index =
+
+    state.accounts.findIndex(
+
+        account =>
+
+        account.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    state.accounts.splice(
+
+        index,
+
+        1
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT BALANCE
+=========================== */
+
+
+function getAccountBalance(id){
+
+
+
+    const account =
+
+    getAccountById(id);
+
+
+
+    if(!account)
+
+        return 0;
+
+
+
+    return account.balance;
+
+
+}
+
+
+
+
+
+function getTotalAccountsBalance(){
+
+
+
+    return state.accounts.reduce(
+
+        (total,account)=>
+
+        total +
+
+        Number(account.balance || 0),
+
+        0
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT MOVEMENTS
+=========================== */
+
+
+function getAccountMovements(accountId){
+
+
+
+    return state.movements.filter(
+
+        movement =>
+
+        movement.accountId === accountId
+
+    );
+
+
+}
+
+
+
+
+
+function calculateAccountFlow(accountId){
+
+
+
+    const movements =
+
+    getAccountMovements(
+
+        accountId
+
+    );
+
+
+
+    return {
+
+
+        income:
+
+        movements
+
+        .filter(
+
+            item =>
+
+            item.type === "income"
+
+        )
+
+        .reduce(
+
+            (sum,item)=>
+
+            sum + item.amount,
+
+            0
+
+        ),
+
+
+
+
+        expenses:
+
+        movements
+
+        .filter(
+
+            item =>
+
+            item.type === "expense"
+
+        )
+
+        .reduce(
+
+            (sum,item)=>
+
+            sum + item.amount,
+
+            0
+
+        )
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT SELECTOR RENDER
+=========================== */
+
+
+function renderAccountSelector(
+
+    containerId
+
+){
+
+
+
+    const container =
+
+    document.getElementById(
+
+        containerId
+
+    );
+
+
+
+    if(!container)
+
+        return;
+
+
+
+
+    container.innerHTML = "";
+
+
+
+
+    state.accounts.forEach(
+
+        account => {
+
+
+
+            const element =
+
+            document.createElement(
+
+                "button"
+
+            );
+
+
+
+            element.className =
+
+            "account-option";
+
+
+
+
+            element.dataset.id =
+
+            account.id;
+
+
+
+
+            element.innerHTML = `
+
+                <i class="fa-solid ${account.icon}"></i>
+
+                <div>
+
+                    <strong>
+
+                    ${account.name}
+
+                    </strong>
+
+                    <small>
+
+                    ${formatCurrency(account.balance)}
+
+                    </small>
+
+                </div>
+
+            `;
+
+
+
+
+            element.addEventListener(
+
+                "click",
+
+                ()=>{
+
+
+                    selectAccount(
+
+                        account.id
+
+                    );
+
+
+                }
+
+            );
+
+
+
+            container.appendChild(
+
+                element
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   SELECT ACCOUNT
+=========================== */
+
+
+function selectAccount(id){
+
+
+
+    state.selectedAccount = id;
+
+
+
+    document
+
+    .querySelectorAll(
+
+        ".account-option"
+
+    )
+
+    .forEach(
+
+        item => {
+
+
+
+            item.classList.toggle(
+
+                "active",
+
+                item.dataset.id === id
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT SUMMARY
+=========================== */
+
+
+function getAccountsSummary(){
+
+
+
+    return state.accounts.map(
+
+        account => ({
+
+
+
+            id:
+
+            account.id,
+
+
+
+            name:
+
+            account.name,
+
+
+
+            type:
+
+            account.type,
+
+
+
+            balance:
+
+            account.balance,
+
+
+
+            flow:
+
+            calculateAccountFlow(
+
+                account.id
+
+            )
+
+
+
+        })
+
+    );
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 6/12
+   PRESUPUESTO POR CATEGORÍAS
+========================================================= */
+
+
+
+/* ===========================
+   CREATE BUDGET
+=========================== */
+
+
+function createBudget(data){
+
+
+    const budget = {
+
+
+        id:
+
+        generateID("budget"),
+
+
+
+        categoryId:
+
+        data.categoryId || null,
+
+
+
+        limit:
+
+        Number(data.limit || 0),
+
+
+
+        month:
+
+        data.month ||
+
+        new Date().getMonth(),
+
+
+
+        year:
+
+        data.year ||
+
+        new Date().getFullYear()
+
+
+
+    };
+
+
+
+
+    state.budgets.push(budget);
+
+
+
+    saveAllData();
+
+
+
+    return budget;
+
+
+}
+
+
+
+
+
+/* ===========================
+   READ BUDGETS
+=========================== */
+
+
+function getBudgets(){
+
+
+
+    return state.budgets;
+
+
+}
+
+
+
+
+
+function getBudgetByCategory(
+
+    categoryId
+
+){
+
+
+
+    return state.budgets.find(
+
+        budget =>
+
+        budget.categoryId === categoryId
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE BUDGET
+=========================== */
+
+
+function updateBudget(id,newData){
+
+
+
+    const budget =
+
+    state.budgets.find(
+
+        item =>
+
+        item.id === id
+
+    );
+
+
+
+    if(!budget)
+
+        return false;
+
+
+
+
+    Object.assign(
+
+        budget,
+
+        newData
+
+    );
+
+
+
+    if(newData.limit !== undefined){
+
+
+        budget.limit =
+
+        Number(newData.limit);
+
+
+    }
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DELETE BUDGET
+=========================== */
+
+
+function deleteBudget(id){
+
+
+
+    const index =
+
+    state.budgets.findIndex(
+
+        budget =>
+
+        budget.id === id
+
+    );
+
+
+
+    if(index === -1)
+
+        return false;
+
+
+
+
+    state.budgets.splice(
+
+        index,
+
+        1
+
+    );
+
+
+
+    saveAllData();
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY SPENDING
+=========================== */
+
+
+function getCategorySpent(
+
+    categoryId,
+
+    month = new Date().getMonth(),
+
+    year = new Date().getFullYear()
+
+){
+
+
+
+    return state.movements
+
+    .filter(
+
+        movement => {
+
+
+
+            const date =
+
+            new Date(movement.date);
+
+
+
+            return (
+
+                movement.categoryId === categoryId &&
+
+                movement.type === "expense" &&
+
+                date.getMonth() === month &&
+
+                date.getFullYear() === year
+
+            );
+
+
+        }
+
+    )
+
+    .reduce(
+
+        (total,movement)=>
+
+        total + movement.amount,
+
+        0
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   BUDGET PROGRESS
+=========================== */
+
+
+function getBudgetProgress(
+
+    budget
+
+){
+
+
+
+    const spent =
+
+    getCategorySpent(
+
+        budget.categoryId,
+
+        budget.month,
+
+        budget.year
+
+    );
+
+
+
+
+    const percentage =
+
+    budget.limit > 0
+
+    ?
+
+    (
+
+        spent /
+
+        budget.limit
+
+    )
+
+    * 100
+
+    :
+
+    0;
+
+
+
+
+    return {
+
+
+
+        limit:
+
+        budget.limit,
+
+
+
+        spent,
+
+
+
+        remaining:
+
+        budget.limit - spent,
+
+
+
+        percentage:
+
+        Math.min(
+
+            percentage,
+
+            100
+
+        ),
+
+
+
+        exceeded:
+
+        spent > budget.limit
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   ALL BUDGET STATUS
+=========================== */
+
+
+function getBudgetsStatus(){
+
+
+
+    return state.budgets.map(
+
+        budget => {
+
+
+
+            const category =
+
+            getCategoryById(
+
+                budget.categoryId
+
+            );
+
+
+
+            return {
+
+
+
+                id:
+
+                budget.id,
+
+
+
+                categoryId:
+
+                budget.categoryId,
+
+
+
+                categoryName:
+
+                category
+
+                ?
+
+                category.name
+
+                :
+
+                "Sin categoría",
+
+
+
+                progress:
+
+                getBudgetProgress(
+
+                    budget
+
+                )
+
+
+
+            };
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   BUDGET ALERTS
+=========================== */
+
+
+function getBudgetAlerts(){
+
+
+
+    return getBudgetsStatus()
+
+    .filter(
+
+        budget =>
+
+        budget.progress.exceeded
+
+        ||
+
+        budget.progress.percentage >= 80
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   BUDGET SUMMARY
+=========================== */
+
+
+function getBudgetSummary(){
+
+
+
+    const totalLimit =
+
+    state.budgets.reduce(
+
+        (sum,budget)=>
+
+        sum + budget.limit,
+
+        0
+
+    );
+
+
+
+    const totalSpent =
+
+    state.budgets.reduce(
+
+        (sum,budget)=>
+
+        sum +
+
+        getCategorySpent(
+
+            budget.categoryId,
+
+            budget.month,
+
+            budget.year
+
+        ),
+
+        0
+
+    );
+
+
+
+    return {
+
+
+
+        totalLimit,
+
+
+
+        totalSpent,
+
+
+
+        remaining:
+
+        totalLimit - totalSpent
+
+
+
+    };
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 7/12
+   ESTADÍSTICAS
+========================================================= */
+
+
+
+/* ===========================
+   GENERAL STATISTICS
+=========================== */
+
+
+function getGeneralStatistics(){
+
+
+
+    const movements =
+
+    state.movements;
+
+
+
+    const expenses =
+
+    movements.filter(
+
+        movement =>
+
+        movement.type === "expense"
+
+    );
+
+
+
+    const incomes =
+
+    movements.filter(
+
+        movement =>
+
+        movement.type === "income"
+
+    );
+
+
+
+
+    const totalExpenses =
+
+    expenses.reduce(
+
+        (sum,item)=>
+
+        sum + item.amount,
+
+        0
+
+    );
+
+
+
+    const totalIncome =
+
+    incomes.reduce(
+
+        (sum,item)=>
+
+        sum + item.amount,
+
+        0
+
+    );
+
+
+
+
+    return {
+
+
+
+        totalMovements:
+
+        movements.length,
+
+
+
+        totalExpenses,
+
+
+
+        totalIncome,
+
+
+
+        averageExpense:
+
+        expenses.length
+
+        ?
+
+        totalExpenses /
+
+        expenses.length
+
+        :
+
+        0,
+
+
+
+        averageIncome:
+
+        incomes.length
+
+        ?
+
+        totalIncome /
+
+        incomes.length
+
+        :
+
+        0
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   BIGGEST MOVEMENTS
+=========================== */
+
+
+function getLargestExpense(){
+
+
+
+    return (
+
+        state.movements
+
+        .filter(
+
+            movement =>
+
+            movement.type === "expense"
+
+        )
+
+        .sort(
+
+            (a,b)=>
+
+            b.amount - a.amount
+
+        )[0]
+
+        ||
+
+        null
+
+    );
+
+
+}
+
+
+
+
+
+function getLargestIncome(){
+
+
+
+    return (
+
+        state.movements
+
+        .filter(
+
+            movement =>
+
+            movement.type === "income"
+
+        )
+
+        .sort(
+
+            (a,b)=>
+
+            b.amount - a.amount
+
+        )[0]
+
+        ||
+
+        null
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY ANALYSIS
+=========================== */
+
+
+function getTopExpenseCategory(){
+
+
+
+    const summary =
+
+    getCategorySummary();
+
+
+
+    return (
+
+        summary
+
+        .sort(
+
+            (a,b)=>
+
+            b.total - a.total
+
+        )[0]
+
+        ||
+
+        null
+
+    );
+
+
+}
+
+
+
+
+
+function getCategoryPercentage(){
+
+
+
+    const totalExpenses =
+
+    calculateTotalExpenses();
+
+
+
+    return getCategorySummary()
+
+    .map(
+
+        category => ({
+
+
+
+            ...category,
+
+
+
+            percentage:
+
+            totalExpenses > 0
+
+            ?
+
+            (
+
+                category.total /
+
+                totalExpenses
+
+            )
+
+            * 100
+
+            :
+
+            0
+
+
+
+        })
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   MONTHLY COMPARISON
+=========================== */
+
+
+function getMonthlyComparison(){
+
+
+
+    const months = [];
+
+
+
+    for(
+
+        let i = 5;
+
+        i >= 0;
+
+        i--
+
+    ){
+
+
+
+        const date = new Date();
+
+
+
+        date.setMonth(
+
+            date.getMonth() - i
+
+        );
+
+
+
+        const month =
+
+        date.getMonth();
+
+
+
+        const year =
+
+        date.getFullYear();
+
+
+
+
+        const movements =
+
+        state.movements.filter(
+
+            movement => {
+
+
+
+                const movementDate =
+
+                new Date(
+
+                    movement.date
+
+                );
+
+
+
+                return (
+
+                    movementDate.getMonth()
+
+                    ===
+
+                    month
+
+                    &&
+
+                    movementDate.getFullYear()
+
+                    ===
+
+                    year
+
+                );
+
+
+            }
+
+        );
+
+
+
+
+        months.push({
+
+
+
+            month:
+
+
+
+            date.toLocaleString(
+
+                "es-CO",
+
+                {
+
+                    month:"short"
+
+                }
+
+            ),
+
+
+
+            income:
+
+
+
+            movements
+
+            .filter(
+
+                item =>
+
+                item.type === "income"
+
+            )
+
+            .reduce(
+
+                (sum,item)=>
+
+                sum + item.amount,
+
+                0
+
+            ),
+
+
+
+            expenses:
+
+
+
+            movements
+
+            .filter(
+
+                item =>
+
+                item.type === "expense"
+
+            )
+
+            .reduce(
+
+                (sum,item)=>
+
+                sum + item.amount,
+
+                0
+
+            )
+
+
+
+        });
+
+
+
+    }
+
+
+
+    return months;
+
+
+}
+
+
+
+
+
+/* ===========================
+   FINANCIAL HEALTH
+=========================== */
+
+
+function calculateFinancialHealth(){
+
+
+
+    const income =
+
+    calculateTotalIncome();
+
+
+
+    const expenses =
+
+    calculateTotalExpenses();
+
+
+
+
+    if(income === 0)
+
+        return 0;
+
+
+
+
+    const savingRate =
+
+    (
+
+        (
+
+            income -
+
+            expenses
+
+        )
+
+        /
+
+        income
+
+    )
+
+    * 100;
+
+
+
+
+    return Math.max(
+
+        0,
+
+        Math.min(
+
+            100,
+
+            savingRate + 50
+
+        )
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   COMPLETE STATISTICS OBJECT
+=========================== */
+
+
+function getStatisticsDashboard(){
+
+
+
+    return {
+
+
+
+        general:
+
+        getGeneralStatistics(),
+
+
+
+        largestExpense:
+
+        getLargestExpense(),
+
+
+
+        largestIncome:
+
+        getLargestIncome(),
+
+
+
+        topCategory:
+
+        getTopExpenseCategory(),
+
+
+
+        categories:
+
+        getCategoryPercentage(),
+
+
+
+        monthly:
+
+        getMonthlyComparison(),
+
+
+
+        health:
+
+        calculateFinancialHealth()
+
+
+
+    };
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 8/12
+   GRÁFICOS
+========================================================= */
+
+
+
+/* ===========================
+   CHART STORAGE
+=========================== */
+
+
+const charts = {
+
+
+    incomeExpense:null,
+
+
+    categories:null,
+
+
+    monthly:null
+
+
+
+};
+
+
+
+
+
+/* ===========================
+   DESTROY CHART
+=========================== */
+
+
+function destroyChart(chart){
+
+
+
+    if(chart){
+
+
+        chart.destroy();
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   CHART DEFAULT CONFIG
+=========================== */
+
+
+const CHART_CONFIG = {
+
+
+    responsive:true,
+
+
+    maintainAspectRatio:false,
+
+
+    plugins:{
+
+
+        legend:{
+
+
+            labels:{
+
+
+                color:"#ffffff"
+
+
+            }
+
+
+        }
+
+
+    }
+
+
+
+};
+
+
+
+
+
+/* ===========================
+   INCOME VS EXPENSE CHART
+=========================== */
+
+
+function createIncomeExpenseChart(){
+
+
+
+    const canvas =
+
+    document.getElementById(
+
+        "incomeExpenseChart"
+
+    );
+
+
+
+    if(!canvas)
+
+        return;
+
+
+
+
+    destroyChart(
+
+        charts.incomeExpense
+
+    );
+
+
+
+
+    const statistics =
+
+    getGeneralStatistics();
+
+
+
+
+    charts.incomeExpense =
+
+    new Chart(
+
+        canvas,
+
+        {
+
+
+
+            type:"doughnut",
+
+
+
+            data:{
+
+
+
+                labels:[
+
+                    "Ingresos",
+
+                    "Gastos"
+
+                ],
+
+
+
+                datasets:[{
+
+
+                    data:[
+
+
+                        statistics.totalIncome,
+
+
+                        statistics.totalExpenses
+
+
+
+                    ],
+
+
+
+                    borderWidth:0
+
+
+
+                }]
+
+
+
+            },
+
+
+
+            options:CHART_CONFIG
+
+
+
+        }
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY CHART
+=========================== */
+
+
+function createCategoryChart(){
+
+
+
+    const canvas =
+
+    document.getElementById(
+
+        "categoryChart"
+
+    );
+
+
+
+    if(!canvas)
+
+        return;
+
+
+
+
+    destroyChart(
+
+        charts.categories
+
+    );
+
+
+
+
+    const categories =
+
+    getCategoryPercentage()
+
+    .filter(
+
+        item =>
+
+        item.total > 0
+
+    );
+
+
+
+
+
+    charts.categories =
+
+    new Chart(
+
+        canvas,
+
+        {
+
+
+
+            type:"polarArea",
+
+
+
+            data:{
+
+
+
+                labels:
+
+                categories.map(
+
+                    item =>
+
+                    item.name
+
+                ),
+
+
+
+                datasets:[
+
+
+
+                    {
+
+
+
+                        data:
+
+                        categories.map(
+
+                            item =>
+
+                            item.total
+
+                        ),
+
+
+
+                        borderWidth:1
+
+
+
+                    }
+
+
+
+                ]
+
+
+
+            },
+
+
+
+            options:CHART_CONFIG
+
+
+
+        }
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   MONTHLY EVOLUTION CHART
+=========================== */
+
+
+function createMonthlyChart(){
+
+
+
+    const canvas =
+
+    document.getElementById(
+
+        "monthlyChart"
+
+    );
+
+
+
+    if(!canvas)
+
+        return;
+
+
+
+
+    destroyChart(
+
+        charts.monthly
+
+    );
+
+
+
+
+    const data =
+
+    getMonthlyComparison();
+
+
+
+
+
+    charts.monthly =
+
+    new Chart(
+
+        canvas,
+
+        {
+
+
+
+            type:"line",
+
+
+
+            data:{
+
+
+
+                labels:
+
+                data.map(
+
+                    item =>
+
+                    item.month
+
+                ),
+
+
+
+
+                datasets:[
+
+
+
+                    {
+
+
+                        label:
+
+                        "Ingresos",
+
+
+
+                        data:
+
+                        data.map(
+
+                            item =>
+
+                            item.income
+
+                        ),
+
+
+
+                        tension:.4
+
+
+
+                    },
+
+
+
+                    {
+
+
+                        label:
+
+                        "Gastos",
+
+
+
+                        data:
+
+                        data.map(
+
+                            item =>
+
+                            item.expenses
+
+                        ),
+
+
+
+                        tension:.4
+
+
+
+                    }
+
+
+
+                ]
+
+
+
+            },
+
+
+
+            options:{
+
+                ...CHART_CONFIG,
+
+
+                scales:{
+
+
+
+                    x:{
+
+
+                        ticks:{
+
+
+                            color:"#aaa"
+
+
+                        }
+
+
+                    },
+
+
+
+                    y:{
+
+
+                        ticks:{
+
+
+                            color:"#aaa"
+
+
+                        }
+
+
+                    }
+
+
+
+                }
+
+
+
+            }
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   UPDATE ALL CHARTS
+=========================== */
+
+
+function updateCharts(){
+
+
+
+    createIncomeExpenseChart();
+
+
+
+    createCategoryChart();
+
+
+
+    createMonthlyChart();
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   CHART REFRESH LISTENER
+=========================== */
+
+
+function refreshFinancialVisuals(){
+
+
+
+    updateDashboard();
+
+
+
+    updateCharts();
+
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 9/12
+   IMPORTAR Y EXPORTAR
+========================================================= */
+
+
+
+/* ===========================
+   EXPORT DATA
+=========================== */
+
+
+function exportData(){
+
+
+
+    const backup = {
+
+
+
+        app:
+
+        APP_CONFIG.name,
+
+
+
+        version:
+
+        APP_CONFIG.version,
+
+
+
+        date:
+
+        new Date().toISOString(),
+
+
+
+        data:{
+
+
+
+            movements:
+
+            state.movements,
+
+
+
+            accounts:
+
+            state.accounts,
+
+
+
+            categories:
+
+            state.categories,
+
+
+
+            budgets:
+
+            state.budgets,
+
+
+
+            goals:
+
+            state.goals,
+
+
+
+            settings:
+
+            state.settings
+
+
+
+        }
+
+
+
+    };
+
+
+
+
+
+    const json =
+
+    JSON.stringify(
+
+        backup,
+
+        null,
+
+        4
+
+    );
+
+
+
+
+
+    const blob =
+
+    new Blob(
+
+        [
+
+            json
+
+        ],
+
+        {
+
+            type:
+
+            "application/json"
+
+        }
+
+    );
+
+
+
+
+
+    const url =
+
+    URL.createObjectURL(
+
+        blob
+
+    );
+
+
+
+
+
+    const link =
+
+    document.createElement(
+
+        "a"
+
+    );
+
+
+
+    link.href = url;
+
+
+
+    link.download =
+
+    "finanzas_backup.json";
+
+
+
+    document.body.appendChild(
+
+        link
+
+    );
+
+
+
+    link.click();
+
+
+
+    document.body.removeChild(
+
+        link
+
+    );
+
+
+
+    URL.revokeObjectURL(
+
+        url
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   VALIDATE IMPORT
+=========================== */
+
+
+function validateBackup(data){
+
+
+
+    if(!data)
+
+        return false;
+
+
+
+
+    if(!data.data)
+
+        return false;
+
+
+
+
+    const required = [
+
+
+
+        "movements",
+
+
+        "accounts",
+
+
+        "categories",
+
+
+        "budgets",
+
+
+        "goals",
+
+
+        "settings"
+
+
+
+    ];
+
+
+
+
+
+    return required.every(
+
+        key =>
+
+        key in data.data
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   IMPORT DATA
+=========================== */
+
+
+function importData(file){
+
+
+
+    return new Promise(
+
+        (resolve,reject)=>{
+
+
+
+            const reader =
+
+            new FileReader();
+
+
+
+
+            reader.onload =
+
+            event => {
+
+
+
+                try{
+
+
+
+                    const backup =
+
+                    JSON.parse(
+
+                        event.target.result
+
+                    );
+
+
+
+
+
+                    if(
+
+                        !validateBackup(
+
+                            backup
+
+                        )
+
+                    ){
+
+
+
+                        reject(
+
+                            "Archivo inválido"
+
+                        );
+
+
+                        return;
+
+
+                    }
+
+
+
+
+
+                    state.movements =
+
+                    backup.data.movements;
+
+
+
+                    state.accounts =
+
+                    backup.data.accounts;
+
+
+
+                    state.categories =
+
+                    backup.data.categories;
+
+
+
+                    state.budgets =
+
+                    backup.data.budgets;
+
+
+
+                    state.goals =
+
+                    backup.data.goals;
+
+
+
+                    state.settings =
+
+                    backup.data.settings;
+
+
+
+
+
+                    saveAllData();
+
+
+
+
+                    resolve(true);
+
+
+
+                }
+
+
+
+                catch(error){
+
+
+
+                    reject(error);
+
+
+
+                }
+
+
+
+            };
+
+
+
+
+
+            reader.onerror =
+
+            error => {
+
+
+
+                reject(error);
+
+
+
+            };
+
+
+
+
+
+            reader.readAsText(
+
+                file
+
+            );
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   RESET APPLICATION
+=========================== */
+
+
+function resetApplication(){
+
+
+
+    localStorage.clear();
+
+
+
+    state.movements = [];
+
+
+
+    state.accounts =
+
+    [
+
+        ...DEFAULT_DATA.accounts
+
+    ];
+
+
+
+    state.categories =
+
+    [
+
+        ...DEFAULT_DATA.categories
+
+    ];
+
+
+
+    state.budgets = [];
+
+
+
+    state.goals = [];
+
+
+
+    state.settings = {
+
+
+        theme:"dark",
+
+
+        currency:"COP",
+
+
+        firstLaunch:true
+
+
+    };
+
+
+
+    saveAllData();
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   BACKUP INFORMATION
+=========================== */
+
+
+function getBackupInfo(){
+
+
+
+    return {
+
+
+
+        movements:
+
+        state.movements.length,
+
+
+
+        accounts:
+
+        state.accounts.length,
+
+
+
+        categories:
+
+        state.categories.length,
+
+
+
+        budgets:
+
+        state.budgets.length,
+
+
+
+        goals:
+
+        state.goals.length
+
+
+
+    };
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 10/12
+   NOTIFICACIONES - MODALES - VALIDACIONES
+========================================================= */
+
+
+
+/* ===========================
+   TOAST SYSTEM
+=========================== */
+
+
+function showToast(
+
+    message,
+
+    type="success"
+
+){
+
+
+
+    const container =
+
+    document.getElementById(
+
+        "toastContainer"
+
+    );
+
+
+
+    if(!container)
+
+        return;
+
+
+
+
+    const toast =
+
+    document.createElement(
+
+        "div"
+
+    );
+
+
+
+    toast.className =
+
+    `toast ${type}`;
+
+
+
+
+
+    toast.innerHTML = `
+
+        <i class="fa-solid 
+
+        ${
+
+        type === "success"
+
+        ?
+
+        "fa-circle-check"
+
+        :
+
+        type === "error"
+
+        ?
+
+        "fa-circle-xmark"
+
+        :
+
+        "fa-triangle-exclamation"
+
+        }
+
+        "></i>
+
+        <span>${message}</span>
+
+    `;
+
+
+
+
+
+    container.appendChild(
+
+        toast
+
+    );
+
+
+
+
+
+    setTimeout(
+
+        ()=>{
+
+
+            toast.remove();
+
+
+        },
+
+        3500
+
+    );
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL CONTROL
+=========================== */
+
+
+function openModal(id){
+
+
+
+    const modal =
+
+    document.getElementById(
+
+        id
+
+    );
+
+
+
+    if(!modal)
+
+        return;
+
+
+
+
+    modal.classList.remove(
+
+        "hidden"
+
+    );
+
+
+
+}
+
+
+
+
+
+function closeModal(id){
+
+
+
+    const modal =
+
+    document.getElementById(
+
+        id
+
+    );
+
+
+
+    if(!modal)
+
+        return;
+
+
+
+
+    modal.classList.add(
+
+        "hidden"
+
+    );
+
+
+}
+
+
+
+
+
+function closeAllModals(){
+
+
+
+    document
+
+    .querySelectorAll(
+
+        ".modal"
+
+    )
+
+    .forEach(
+
+        modal => {
+
+
+
+            modal.classList.add(
+
+                "hidden"
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   MODAL OUTSIDE CLICK
+=========================== */
+
+
+function setupModalEvents(){
+
+
+
+    document
+
+    .querySelectorAll(
+
+        ".modal"
+
+    )
+
+    .forEach(
+
+        modal => {
+
+
+
+            modal.addEventListener(
+
+                "click",
+
+                event => {
+
+
+
+                    if(
+
+                        event.target === modal
+
+                    ){
+
+
+
+                        modal.classList.add(
+
+                            "hidden"
+
+                        );
+
+
+                    }
+
+
+                }
+
+            );
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   VALIDATION HELPERS
+=========================== */
+
+
+function validateRequired(value){
+
+
+
+    return (
+
+        value !== undefined &&
+
+        value !== null &&
+
+        value.toString()
+
+        .trim()
+
+        .length > 0
+
+    );
+
+
+}
+
+
+
+
+
+function validateAmount(amount){
+
+
+
+    return (
+
+        !isNaN(amount)
+
+        &&
+
+        Number(amount) > 0
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   MOVEMENT VALIDATION
+=========================== */
+
+
+function validateMovement(data){
+
+
+
+    const errors = [];
+
+
+
+
+    if(
+
+        !validateAmount(
+
+            data.amount
+
+        )
+
+    ){
+
+
+        errors.push(
+
+            "El valor debe ser mayor a cero"
+
+        );
+
+
+    }
+
+
+
+
+    if(
+
+        !data.accountId
+
+    ){
+
+
+        errors.push(
+
+            "Selecciona una cuenta"
+
+        );
+
+
+    }
+
+
+
+
+    if(
+
+        !data.categoryId
+
+    ){
+
+
+        errors.push(
+
+            "Selecciona una categoría"
+
+        );
+
+
+    }
+
+
+
+
+    return {
+
+
+        valid:
+
+        errors.length === 0,
+
+
+
+        errors
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   CATEGORY VALIDATION
+=========================== */
+
+
+function validateCategory(data){
+
+
+
+    const errors = [];
+
+
+
+
+    if(
+
+        !validateRequired(
+
+            data.name
+
+        )
+
+    ){
+
+
+
+        errors.push(
+
+            "Nombre requerido"
+
+        );
+
+
+    }
+
+
+
+
+
+    return {
+
+
+
+        valid:
+
+        errors.length === 0,
+
+
+
+        errors
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   ACCOUNT VALIDATION
+=========================== */
+
+
+function validateAccount(data){
+
+
+
+    const errors = [];
+
+
+
+
+    if(
+
+        !validateRequired(
+
+            data.name
+
+        )
+
+    ){
+
+
+
+        errors.push(
+
+            "Nombre requerido"
+
+        );
+
+
+    }
+
+
+
+
+
+    if(
+
+        data.balance !== undefined
+
+        &&
+
+        isNaN(
+
+            Number(
+
+                data.balance
+
+            )
+
+        )
+
+    ){
+
+
+
+        errors.push(
+
+            "Saldo inválido"
+
+        );
+
+
+    }
+
+
+
+
+    return {
+
+
+
+        valid:
+
+        errors.length === 0,
+
+
+
+        errors
+
+
+
+    };
+
+
+}
+
+
+
+
+
+/* ===========================
+   ERROR DISPLAY
+=========================== */
+
+
+function showValidationErrors(errors){
+
+
+
+    errors.forEach(
+
+        error => {
+
+
+
+            showToast(
+
+                error,
+
+                "error"
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   BUTTON EVENTS
+=========================== */
+
+
+function setupGlobalEvents(){
+
+
+
+    document
+
+    .addEventListener(
+
+        "keydown",
+
+        event => {
+
+
+
+            if(
+
+                event.key === "Escape"
+
+            ){
+
+
+
+                closeAllModals();
+
+
+            }
+
+
+        }
+
+    );
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 11/12
+   PWA - SERVICE WORKER - OPTIMIZACIÓN
+========================================================= */
+
+
+
+/* ===========================
+   PWA CONFIGURATION
+=========================== */
+
+
+const PWA_CONFIG = {
+
+
+    serviceWorker:
+
+    "/service-worker.js",
+
+
+
+    enabled:
+
+    true
+
+
+
+};
+
+
+
+
+
+/* ===========================
+   SERVICE WORKER REGISTER
+=========================== */
+
+
+function registerServiceWorker(){
+
+
+
+    if(
+
+        !PWA_CONFIG.enabled
+
+    )
+
+        return;
+
+
+
+
+    if(
+
+        "serviceWorker"
+
+        in navigator
+
+    ){
+
+
+
+        window.addEventListener(
+
+            "load",
+
+            ()=>{
+
+
+
+                navigator.serviceWorker
+
+                .register(
+
+                    PWA_CONFIG.serviceWorker
+
+                )
+
+                .then(
+
+                    registration => {
+
+
+
+                        console.log(
+
+                            "Service Worker registrado:",
+
+                            registration.scope
+
+                        );
+
+
+
+                    }
+
+                )
+
+                .catch(
+
+                    error => {
+
+
+
+                        console.error(
+
+                            "Error Service Worker:",
+
+                            error
+
+                        );
+
+
+
+                    }
+
+                );
+
+
+
+            }
+
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   ONLINE / OFFLINE STATUS
+=========================== */
+
+
+function setupConnectionMonitor(){
+
+
+
+    window.addEventListener(
+
+        "online",
+
+        ()=>{
+
+
+
+            showToast(
+
+                "Conexión restaurada",
+
+                "success"
+
+            );
+
+
+        }
+
+    );
+
+
+
+
+    window.addEventListener(
+
+        "offline",
+
+        ()=>{
+
+
+
+            showToast(
+
+                "Modo sin conexión activado",
+
+                "warning"
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   INSTALL PROMPT
+=========================== */
+
+
+let deferredInstallPrompt = null;
+
+
+
+
+function setupInstallPrompt(){
+
+
+
+    window.addEventListener(
+
+        "beforeinstallprompt",
+
+        event => {
+
+
+
+            event.preventDefault();
+
+
+
+            deferredInstallPrompt =
+
+            event;
+
+
+
+            showInstallButton();
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+function showInstallButton(){
+
+
+
+    const button =
+
+    document.getElementById(
+
+        "installApp"
+
+    );
+
+
+
+    if(!button)
+
+        return;
+
+
+
+
+    button.classList.remove(
+
+        "hidden"
+
+    );
+
+
+
+}
+
+
+
+
+
+async function installApplication(){
+
+
+
+    if(!deferredInstallPrompt)
+
+        return;
+
+
+
+
+    deferredInstallPrompt.prompt();
+
+
+
+
+    const result =
+
+    await deferredInstallPrompt
+
+    .userChoice;
+
+
+
+    if(
+
+        result.outcome ===
+
+        "accepted"
+
+    ){
+
+
+
+        showToast(
+
+            "Aplicación instalada",
+
+            "success"
+
+        );
+
+
+    }
+
+
+
+    deferredInstallPrompt = null;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MEMORY OPTIMIZATION
+=========================== */
+
+
+function clearUnusedReferences(){
+
+
+
+    if(
+
+        charts.incomeExpense
+
+    ){
+
+
+
+        charts.incomeExpense
+
+        .resize();
+
+
+    }
+
+
+
+
+    if(
+
+        charts.categories
+
+    ){
+
+
+
+        charts.categories
+
+        .resize();
+
+
+    }
+
+
+
+
+    if(
+
+        charts.monthly
+
+    ){
+
+
+
+        charts.monthly
+
+        .resize();
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   PERFORMANCE OBSERVER
+=========================== */
+
+
+function monitorPerformance(){
+
+
+
+    if(
+
+        "performance"
+
+        in window
+
+    ){
+
+
+
+        const navigation =
+
+        performance
+
+        .getEntriesByType(
+
+            "navigation"
+
+        )[0];
+
+
+
+
+        if(navigation){
+
+
+
+            console.log(
+
+                "Carga completa:",
+
+                navigation.loadEventEnd
+
+                -
+
+                navigation.startTime,
+
+                "ms"
+
+            );
+
+
+        }
+
+
+    }
+
+
+}
+
+
+
+
+
+/* ===========================
+   VISIBILITY OPTIMIZATION
+=========================== */
+
+
+function setupVisibilityOptimization(){
+
+
+
+    document.addEventListener(
+
+        "visibilitychange",
+
+        ()=>{
+
+
+
+            if(
+
+                document.hidden
+
+            ){
+
+
+
+                clearUnusedReferences();
+
+
+            }
+
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   INITIAL PWA SETUP
+=========================== */
+
+
+function initializePWA(){
+
+
+
+    registerServiceWorker();
+
+
+
+    setupConnectionMonitor();
+
+
+
+    setupInstallPrompt();
+
+
+
+    setupVisibilityOptimization();
+
+
+
+    monitorPerformance();
+
+
+
+}
+/* =========================================================
+   FINANZAS v2.0
+   APP.JS
+   PARTE 12/12
+   INICIALIZACIÓN - PRUEBAS - ARRANQUE FINAL
+========================================================= */
+
+
+
+/* ===========================
+   APPLICATION INITIALIZATION
+=========================== */
+
+
+function initializeApplication(){
+
+
+
+    console.log(
+
+        "Iniciando Finanzas v2.0..."
+
+    );
+
+
+
+
+    loadApplicationData();
+
+
+
+    setupGlobalEvents();
+
+
+
+    setupModalEvents();
+
+
+
+    initializePWA();
+
+
+
+    renderInitialInterface();
+
+
+
+    runIntegrityTests();
+
+
+
+    hideLoader();
+
+
+
+    console.log(
+
+        "Finanzas v2.0 iniciado correctamente"
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   INITIAL INTERFACE
+=========================== */
+
+
+function renderInitialInterface(){
+
+
+
+    updateDashboard();
+
+
+
+    renderAccountSelector(
+
+        "paymentSelector"
+
+    );
+
+
+
+    renderCategorySelector(
+
+        "categorySelector"
+
+    );
+
+
+
+    updateCharts();
+
+
+
+    renderRecentMovements();
+
+
+
+}
+
+
+
+
+
+/* ===========================
+   RECENT MOVEMENTS
+=========================== */
+
+
+function renderRecentMovements(){
+
+
+
+    const container =
+
+    document.getElementById(
+
+        "recentMovements"
+
+    );
+
+
+
+    if(!container)
+
+        return;
+
+
+
+
+    const movements =
+
+    getRecentMovements(5);
+
+
+
+
+    container.innerHTML = "";
+
+
+
+
+    if(
+
+        movements.length === 0
+
+    ){
+
+
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <i class="fa-solid fa-wallet"></i>
+
+                <p>
+
+                No hay movimientos todavía
+
+                </p>
+
+            </div>
+
+        `;
+
+
+
+        return;
+
+
+    }
+
+
+
+
+
+    movements.forEach(
+
+        movement => {
+
+
+
+            const category =
+
+            getCategoryById(
+
+                movement.categoryId
+
+            );
+
+
+
+
+            const element =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+
+
+            element.className =
+
+            "movement-item";
+
+
+
+
+            element.innerHTML = `
+
+            
+            <div class="movement-icon">
+
+                <i class="fa-solid 
+
+                ${
+
+                category
+
+                ?
+
+                category.icon
+
+                :
+
+                "fa-money-bill"
+
+                }
+
+                "></i>
+
+            </div>
+
+
+            <div class="movement-info">
+
+                <strong>
+
+                ${
+
+                movement.description ||
+
+                "Movimiento"
+
+                }
+
+                </strong>
+
+
+                <small>
+
+                ${
+
+                category
+
+                ?
+
+                category.name
+
+                :
+
+                "General"
+
+                }
+
+                </small>
+
+            </div>
+
+
+            <div class="movement-value
+
+            ${movement.type}">
+
+                ${
+
+                movement.type === "income"
+
+                ?
+
+                "+"
+
+                :
+
+                "-"
+
+                }
+
+
+                ${
+
+                formatCurrency(
+
+                    movement.amount
+
+                )
+
+                }
+
+            </div>
+
+
+            `;
+
+
+
+            container.appendChild(
+
+                element
+
+            );
+
+
+        }
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   LOADER CONTROL
+=========================== */
+
+
+function hideLoader(){
+
+
+
+    const loader =
+
+    document.getElementById(
+
+        "loadingScreen"
+
+    );
+
+
+
+    if(!loader)
+
+        return;
+
+
+
+
+    loader.classList.add(
+
+        "hidden"
+
+    );
+
+
+}
+
+
+
+
+
+/* ===========================
+   SYSTEM TESTS
+=========================== */
+
+
+function runIntegrityTests(){
+
+
+
+    const tests = {
+
+
+
+        storage:
+
+        typeof localStorage !==
+
+        "undefined",
+
+
+
+        currency:
+
+        typeof formatCurrency ===
+
+        "function",
+
+
+
+        movements:
+
+        Array.isArray(
+
+            state.movements
+
+        ),
+
+
+
+        accounts:
+
+        Array.isArray(
+
+            state.accounts
+
+        ),
+
+
+
+        categories:
+
+        Array.isArray(
+
+            state.categories
+
+        )
+
+
+
+    };
+
+
+
+
+    const failed =
+
+    Object.entries(
+
+        tests
+
+    )
+
+    .filter(
+
+        ([key,value]) =>
+
+        !value
+
+    );
+
+
+
+
+    if(
+
+        failed.length > 0
+
+    ){
+
+
+
+        console.error(
+
+            "Errores encontrados:",
+
+            failed
+
+        );
+
+
+
+        showToast(
+
+            "Se detectaron errores de carga",
+
+            "error"
+
+        );
+
+
+        return false;
+
+
+    }
+
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+/* ===========================
+   DOM READY
+=========================== */
+
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    ()=>{
+
+
+
+        initializeApplication();
+
+
+
+    }
+
+);
